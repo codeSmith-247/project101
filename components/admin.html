@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="admin.css">
+        <title>first layer</title>
+    </head>
+    <body>
+        <div class="first">
+          <div class="header">
+            <div class="send">
+                <ion-icon name="send-sharp"></ion-icon>
+            </div>
+                
+            <div class="ellipsis">
+                <button><ion-icon name="ellipsis-horizontal-sharp"></ion-icon></button>
+            </div>
+        </div>
+        <h4>Acme Plus</h4> 
+            <p>SALES</p>
+        <div class="money-percent">
+            <h1>$24,780</h1>
+            <div class="dresswell">
+                <h5>+49%</h5>
+            </div>
+        </div>
+
+        <div class="shadow-lg rounded-lg overflow-hidden">
+            <div class="py-3 px-5 bg-gray-50"></div>
+            <canvas class="p-10" id="chartLine"></canvas>
+          </div>
+          
+          <!-- Required chart.js -->
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          
+          <!-- Chart line -->
+          <script>
+            const labels = ["January", "February", "March", "April", "May", "June"];
+            const data = {
+              labels: labels,
+              datasets: [
+                {
+                  label: "My First dataset",
+                  backgroundColor: "hsl(252, 82.9%, 67.8%)",
+                  borderColor: "hsl(252, 82.9%, 67.8%)",
+                  data: [0, 10, 5, 2, 20, 30, 45],
+                },
+              ],
+            };
+          
+            const configLineChart = {
+              type: "line",
+              data,
+              options: {},
+            };
+          
+            var chartLine = new Chart(
+              document.getElementById("chartLine"),
+              configLineChart
+            );
+          </script>
+        </div>
+        
+
+
+
+
+
+
+
+
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
+</html>
