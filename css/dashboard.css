@@ -1,9 +1,15 @@
 
+/* menu styles */
+
+.menu, .focus-area {
+    --width: 245px;
+}
 
 .menu {
     background: var(--secondary);
     color: var(--primary);
-    width: 20%;
+    width: var(--width);
+    font-size: 90%;
 }
 
 .menu .contents {
@@ -20,12 +26,6 @@
     cursor: pointer;
     padding: 1rem;
 }
-
-/* .menu .contents > .menu-item {
-    background: black;
-    transform: scale(.95);
-} */
-
 
 .menu .menu-item.sub {
     padding: 0;
@@ -76,4 +76,37 @@
 .menu-item .drop-down.active {
     height: max-content;
     opacity: 1;
+}
+
+
+/* end of menu styles */
+
+/* activity area styles */
+
+.focus-area {
+    width: calc(100% - var(--width));
+}
+
+/* top-bar */
+.top-bar {
+    box-shadow: 0 0 20px #3333332f;
+    padding: 1rem;
+}
+
+.menu-btn {
+    transform: scaleX(1.5) scaleY(1.2);
+    cursor: pointer;
+}
+
+.banner {
+    background: linear-gradient(90deg, #00203c, #050011);
+    box-shadow: 0 0 20px #3333332f;
+    color: white;
+    margin: 3rem 0;
+    transform: scale(.93);
+    padding: 2rem 2.5rem;
+}
+
+.banner p {
+    padding: .5rem 0;
 }
