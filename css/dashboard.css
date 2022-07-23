@@ -6,6 +6,12 @@
     width: 20%;
 }
 
+.menu .contents {
+    height: 100vh;
+    overflow-y: scroll;
+
+}
+
 .menu .logo {
     height: calc(var(--tab-height) + 1rem);
 }
@@ -14,6 +20,12 @@
     cursor: pointer;
     padding: 1rem;
 }
+
+/* .menu .contents > .menu-item {
+    background: black;
+    transform: scale(.95);
+} */
+
 
 .menu .menu-item.sub {
     padding: 0;
@@ -24,20 +36,44 @@
 
 .menu-item .icon {
     padding: 0 0rem;
-    width: 20%;
+    width: 15%;
+    font-size: 120%;
 }
 
 .menu-item .item-value {
     width: 80%;
 }
 
-.menu-item .down.active {
+.menu-item .item-value i {
+    font-size: 80%;
+}
+
+.menu-item .main-value {
+    border-left: 0px solid transparent;
+    padding: .5rem .75rem;
+}
+
+.main-value:hover, .main-value.active {
+    background: #050011;
+    border-left: 7px solid #00203c;
+
+}
+
+.main-value .item-value i.active {
     display: none;
 }
+
+.main-value.active .item-value i {
+    transform: rotateX(180deg);
+}
+
 .menu-item .drop-down {
     height: 0;
     overflow: hidden;
+    transition: opacity .35s ease 0s, height 0s ease .4s;
+    opacity: 0;
 }
 .menu-item .drop-down.active {
-    height: calc(attr('sub') * 20px);
+    height: max-content;
+    opacity: 1;
 }
