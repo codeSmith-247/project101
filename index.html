@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <meta charset = 'utf-8'>
+        <meta name = 'viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Dashboard</title>
+
+        <link rel = 'stylesheet' href = 'components/css/general.css'>
+        <link rel = 'stylesheet' href = 'css/variables.css'>
+        <link rel = 'stylesheet' href = 'css/dashboard.css'>
+    </head>
+    <body>
+        <div class = 'wrapper flex'>
+            <!-- Menu section -->
+            <div class = 'menu left-panel full-vh'>
+                <!-- content box -->
+                <div class = 'contents left-s'>
+
+                    <!-- menu logo -->
+                    <div class = 'logo left-ss'></div>
+
+                    <!-- menu items -->
+                    <div class = 'menu-item left-ss {{class}}' onclick = 'location.href = "{{link}}"' name = '{{name}}'>
+                        <div class = 'main-value flex-row'>
+                            <div class = 'icon left-sss'>
+                                <i class = 'bi bi-{{icon-name}}'></i>
+                            </div> <!-- menu icon-->
+                            <div class = 'item-value left-sss flex-row flex-between'>
+                                <span>{{name}}</span>
+                                <i class = 'bi bi-chevron-down down {{drop-down}}'></i>
+                            </div> <!-- menu item name-->
+                        </div>
+
+                        <div class = 'drop-down'>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--  -->
+
+            <div class = 'focus-area right-panel'>
+
+            </div>
+        </div>
+    </body>
+    <script src = 'script/base_functions.js'></script>
+    <script src = 'script/dashboard.js'></script>
+</html>

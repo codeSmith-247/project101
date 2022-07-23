@@ -1,0 +1,43 @@
+
+
+.menu {
+    background: var(--secondary);
+    color: var(--primary);
+    width: 20%;
+}
+
+.menu .logo {
+    height: calc(var(--tab-height) + 1rem);
+}
+
+.menu .menu-item {
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.menu .menu-item.sub {
+    padding: 0;
+    padding-left: 1rem;
+    font-size: 90%;
+    color: #a2a2a2e9;
+}
+
+.menu-item .icon {
+    padding: 0 0rem;
+    width: 20%;
+}
+
+.menu-item .item-value {
+    width: 80%;
+}
+
+.menu-item .down.active {
+    display: none;
+}
+.menu-item .drop-down {
+    height: 0;
+    overflow: hidden;
+}
+.menu-item .drop-down.active {
+    height: calc(attr('sub') * 20px);
+}
