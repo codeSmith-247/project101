@@ -18,6 +18,10 @@
 
 }
 
+.menu .menu-overlay {
+    display: none;
+}
+
 .menu .logo {
     height: calc(var(--tab-height) + 1rem);
 }
@@ -87,6 +91,11 @@
     width: calc(100% - var(--width));
 }
 
+.focus-area .container {
+    overflow-y: scroll;
+    height: 90vh;
+}
+
 /* top-bar */
 .top-bar {
     box-shadow: 0 0 20px #3333332f;
@@ -96,18 +105,110 @@
 .menu-btn {
     transform: scaleX(1.5) scaleY(1.2);
     cursor: pointer;
+    display: none;
 }
 
 .banner {
     background: linear-gradient(90deg, #00203c, #050011);
     box-shadow: 0 0 20px #3333332f;
+    border-radius: 5px;
     color: white;
     margin: 3rem 0;
     transform: scale(.93);
     padding: 2rem 2.5rem;
+
 }
 
 .banner p {
     padding: .5rem 0;
     color: #949494;
+}
+
+/* cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    transform: scale(.96);
+}
+
+.cards > * {
+    transform: scale(.93);
+}
+
+/* bar chart */
+.charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transform: scale(.96);
+
+}
+.charts .bar-box {
+    background: #fff;
+    box-shadow: 0 0 50px var(--shadow-color);
+    width: 100%;
+    transform: scale(.93);
+}
+
+
+
+@media only screen and (max-width: 1100px) {
+    .cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 940px) {
+    .cards {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .menu {
+        position: fixed;
+        left: calc(-1 * var(--width));
+        z-index: 5;
+    }
+
+    .menu.active {
+        left: 0;
+    }
+
+    .menu.active .menu-overlay {
+        display: block;
+        background: #0000008f;
+        width: 100vw;
+    }
+
+    .focus-area {
+        width: calc(100%);
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+}
+
+@media only screen and (max-width: 830px) {
+    .container .cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cards .first {
+        width: 50vw;
+        margin: 0;
+    }
+
+}
+
+@media only screen and (max-width: 620px) {
+    .container .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .cards .first {
+        width: 100vw;
+        margin: 0;
+    }
+
 }

@@ -16,7 +16,8 @@
     box-shadow: 0 0 var(--shadow) var(--shadow-color);
     width: 600px;
     /* min-height: 400px; */
-    height: max-content
+    height: max-content;
+    /* padding: 1rem; */
 }
 
 .bar-box .top{

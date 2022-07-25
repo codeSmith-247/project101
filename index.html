@@ -7,19 +7,25 @@
 
         <link rel = 'stylesheet' href = 'components/css/general.css'>
         <link rel = 'stylesheet' href = 'css/variables.css'>
+        <link rel = "stylesheet" href = "components/css/admin.css">
+        <link rel = "stylesheet" href = "components/css/barchart.css">
         <link rel = 'stylesheet' href = 'css/dashboard.css'>
 
         <script src = 'script/base_functions.js' defer></script>
         <script src = 'script/menu_functions.js' defer></script>
         <script src = 'script/menu.js' defer></script>
         <script src = 'script/dashboard.js' defer></script>
+        <script src = 'script/cards.js' defer></script>
+
+
+
     </head>
     <body>
         <div class = 'wrapper flex'>
             <!-- Menu section -->
             <div class = 'menu left-panel full-vh'>
                 <!-- content box -->
-                <div class = 'contents left-s'>
+                <div class = 'contents left-s p-rel z-2'>
 
                     <!-- menu logo -->
                     <div class = 'logo left-ss'></div>
@@ -43,6 +49,8 @@
                     </div>
 
                 </div>
+
+                <div class = 'menu-overlay p-abs top-left full-hw p-rel z-1' onclick = 'deactivate_itm(".menu");'></div>
             </div>
             <!--  -->
 
@@ -51,12 +59,13 @@
 
                 <!-- top bar -->
                 <div class = 'top-bar full-w flex-row flex-between'>
-                    <div class = 'menu-btn'>
+                    <div class = 'menu-btn' onclick = 'toggle_itm(".menu");'>
                         <i class = 'bi bi-list'></i>
                     </div>
                     <div>Mr Username</div>
                 </div>
 
+                <!-- content area -->
                 <div class = 'container full-w'>
 
                     <div class = 'banner'>
@@ -64,10 +73,69 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, blanditiis.</p>
                     </div>
 
-                    <div class = 'cards'></div>
+                    <div class = 'cards flex-row'>
+                        <!-- graph -->
+                        <div class="first">
+                            <div class="header">
+                              <div class="send">
+                                  <ion-icon name="send-sharp"></ion-icon>
+                              </div>
+                                  
+                              <div class="ellipsis">
+                                  <button><ion-icon name="ellipsis-horizontal-sharp"></ion-icon></button>
+                              </div>
+                          </div>
+                          <h4>Acme Plus</h4> 
+                              <p>SALES</p>
+                          <div class="money-percent">
+                              <h1>$24,780</h1>
+                              <div class="dresswell">
+                                  <h5>+49%</h5>
+                              </div>
+                          </div>
+                        
+                          <div class="shadow-lg rounded-lg overflow-hidden">
+                              <div class="py-3 px-5 bg-gray-50"></div>
+                              <canvas class="p-10" id="{{chartLine}}"></canvas>
+                            </div>
+                            
+                        </div>
+                        <!--  -->
+                    </div>
+
+                    <div class = 'charts'>
+                        <!-- bar chart -->
+                        <div class = 'bar-box'>
+                            <div class = 'top'>
+                                <h3>Customer Activity</h3>
+                            </div>
+                            <div class = 'bottom'>
+                                <div class = 'price-stat'>
+                                    <span class = 'price' per = '50%'>
+                                        <span>$</span>
+                                        <span>100.5</span>
+                                    </span>
+                                </div>
+            
+                                <div class = 'graph'>
+                                    <div class="overflow-hidden">
+                                        <div class="py-3 px-5 bg-gray-50">Bar chart</div>
+                                        <canvas class="p-10" id="chartBar"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+
                 </div>
+
             </div>
         </div>
+
+    <!-- Required chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
+
     </body>
 
 </html>
