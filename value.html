@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>graph</title>
+    <link rel="stylesheet" href="/css/value.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <ion-icon name="send-sharp" id="icon"></ion-icon>
+            <h1>Graph For Annual Sales</h1>
+            <div class="sales">
+                <h1 class="main-sales">$1,482</h1>
+                <div class="percent-sales"><h1 class="percent-font">-22%</h1></div>
+            </div>
+
+
+<div class="shadow-lg rounded-lg overflow-hidden">
+  <div class="py-3 px-5 bg-gray-50"></div>
+  <canvas class="p-10" id="chartLine"></canvas>
+</div>
+
+<!-- Required chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Chart line -->
+<script>
+  const labels = ["January", "February", "March", "April", "May", "June"];
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "My First dataset",
+        backgroundColor: "hsl(252, 82.9%, 67.8%)",
+        borderColor: "hsl(252, 82.9%, 67.8%)",
+        data: [0, 10, 5, 2, 20, 30, 45],
+      },
+    ],
+  };
+
+  const configLineChart = {
+    type: "line",
+    data,
+    options: {},
+  };
+
+  var chartLine = new Chart(
+    document.getElementById("chartLine"),
+    configLineChart
+  );
+</script
+
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

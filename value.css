@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100vh;
+    width: 100%;
+    background: rgba(128, 128, 128, 0.473);
+    font-family: 'Poppins', sans-serif;
+}
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width:50%;
+   height: max-content;
+   background: white;
+   box-shadow: 9px 9px 9px rgba(0, 0, 0, 0.375);
+   margin: 50px;
+   padding: 1em;
+}
+.sales{
+    display: flex;
+    justify-content: flex-start;
+    width: auto;
+    height: auto;
+   background: transparent;
+   border:solid;
+   border-left: 15px;
+   border-right: 5px;
+   border-inline-start-width: 5px;
+}
+.main-sales{
+    font-size: 60px;
+    font-weight: bold;
+}
+.percent-sales{
+    width: 80px;
+    height: 40px;
+    background-color: green;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 5px;
+
+}
+.percent-font{
+    font-size: 20px;
+}
+#icon{
+    width: 50px;
+    height: 40px;
+    margin: 5px 0px 0px 5px;
+}
+h1{
+  font: 15px;
+  margin: 5px 0px 0px 5px;  
+}
