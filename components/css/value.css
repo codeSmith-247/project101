@@ -9,11 +9,15 @@ body{
     background: rgba(128, 128, 128, 0.473);
     font-family: 'Poppins', sans-serif;
 }
+
 section{
+    background: white;
+    box-shadow: 0 0 50px var(--shadow-color);
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .container{
     width:50%;
    height: max-content;
@@ -60,4 +64,10 @@ section{
 h1{
   font: 15px;
   margin: 5px 0px 0px 5px;  
+}
+
+.bernard {
+    background: white;
+    box-shadow: 0 0 50px var(--shadow-color);
+
 }

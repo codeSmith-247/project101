@@ -202,7 +202,7 @@
 }
 
 @media only screen and (max-width: 620px) {
-    .container .cards {
+    .container .cards, .charts {
         grid-template-columns: 1fr;
     }
 

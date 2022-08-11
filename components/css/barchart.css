@@ -58,8 +58,35 @@
     left: 110px;
 }
 
+.bernard {
+    background: white;
+    box-shadow: 0 0 50px var(--shadow-color);
+    border-radius: 5px;
+    padding: 1rem;
+    transform: scale(.933);
+}
+
+.bernard h1 {
+    font-size: 120%;
+    font-weight: 400;
+    padding: .35rem .5rem;
+}
+
+.bernard .main-sales {
+    font-weight: 900;
+    font-size: 185%;
+    font-weight: 700;
+    letter-spacing: .5px;
+    position: relative;
+}
+
 @media (max-width: 700px) {
     .bar-box {
         width: 80vw;
+        
+    }
+
+    .charts {
+        grid-template-columns: 1fr;
     }
 }
