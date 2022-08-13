@@ -75,6 +75,10 @@ body {
   display: flex;
 }
 
+.flex-end {
+  justify-content: flex-end;
+}
+
 .flex-row {
   display: flex;
   align-items: center;

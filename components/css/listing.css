@@ -1,6 +1,7 @@
 
 .container {
     padding: 1rem;
+    width: 100%;
 }
 
 .container > * {
@@ -9,7 +10,7 @@
     margin: 1rem 0;
 }
 
-.itm-btn {
+.itm-btn, .bottom-btns .btn {
     border-radius: 3.5px;
     box-shadow: 0 0 5px #99999967;
     padding: .45rem .75rem;
@@ -37,6 +38,7 @@
 .list-box {
     border: .15px solid rgba(214, 213, 213, 0.64);
     box-shadow: 0 0 5px rgba(214, 213, 213, 0.423);
+    overflow-x: scroll;
 }
 
 .list-item {
@@ -46,7 +48,8 @@
     border-bottom: 1px solid rgb(211, 211, 211);
     height: 70px;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 150px);
+    width: max-content;
     /* grid-template-columns: 3fr 2fr 3fr 1fr 2fr 1fr 3fr 3fr; */
 }
 
@@ -59,7 +62,7 @@
 .list-item .col {
     transform: scale(.9);
     white-space: nowrap;
-    width: 100%;
+    width: max-content;
     display: flex;
     align-items: center;
     /* background: red; */
@@ -68,12 +71,34 @@
 
 }
 
+
+
 .list-item.small .col {
     transform: scale(.9);
     white-space: nowrap;
 
     display: flex;
     align-items: center;
-    padding: 0;
+    padding: 0 10px;
     text-overflow: ellipsis;
+}
+
+.inner-content {
+    width: clamp(1000px, 100%, 100%);
+    padding: 2rem 0;
+}
+
+.bottom-btns .btn {
+    background: lightgreen;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .itm-btn span{
+        display: none;
+    }
+
+    .itm-btn i {
+        margin: 0;
+    }
 }

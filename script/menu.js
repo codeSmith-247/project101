@@ -1,14 +1,14 @@
 let menu_items = {
     Dashboard : {
         icon : 'house-door-fill',
-        link : '#',
+        link : 'index.html',
         dropdown: true,
         parent: null
     },
 
     "Supplier Bonus" : {
         icon : 'piggy-bank-fill',
-        link : '#',
+        link : 'listing.html',
         dropdown: false,
         parent: null
     },
