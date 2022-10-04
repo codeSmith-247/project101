@@ -1,0 +1,127 @@
+.mymodal-case {
+    background: #ffffff85;
+    display: none;
+}
+
+.mymodal-case.active {
+    display: block;
+}
+
+.mymodal {
+    background: #222;
+    border-radius: 10px;
+    color: floralwhite;
+    width: 480px;
+    height: 490px;
+}
+
+.modal-top, .modal-bottom {
+    background: #111;
+    box-shadow: 0 5px 5px #171717b2;
+    padding: .95rem .75rem;
+}
+
+.modal-bottom {
+    box-shadow: 0 -5px 5px #171717b2;
+    padding: .5rem .75rem;
+}
+
+.modal-btn {
+    background: #000;
+    border-radius: 5px;
+    padding: .55rem 1rem;
+}
+
+.modal-btn:hover {
+    background: rgb(62, 203, 62);
+}
+
+.modal-title {
+    font-weight: 800;
+    font-size: 120%;
+}
+
+.close-x {
+    --size: 30px;
+    background: #fa4437;
+    height: var(--size);
+    width: var(--size);
+}
+
+.modal-middle {
+    margin-top: 3.8rem;
+    height: 75%;
+    overflow-y: scroll;
+    padding: 1rem 0;
+}
+
+.modal-tab {
+    padding: 0.35rem 1.25rem;
+}
+
+.modal-tab .title h6 {
+    font-size: 100%;
+    font-weight: 400;
+}
+
+.modal-tab .info {
+    background: #111111ba;
+    box-shadow: 0 0 5px #171717b2;
+    border: .01px solid #000;
+    border-radius: 7.5px;
+    margin: .45rem 0;
+    outline: none;
+}
+
+.modal-tab .info:focus-within {
+    border: .01px solid #aeaeff;
+}
+
+.modal-edit-btn {
+    padding: 0 .5rem;
+}
+
+.modal-edit-btn {
+    display: none;
+}
+
+.modal-edit-btn.active {
+    display: flex;
+}
+
+.modal-tab .edit-btn {
+    --size: 30px;
+    background: #111;
+    border-radius: 5px;
+    box-shadow: 0 0 2px #000;
+    height: var(--size);
+    width: var(--size);
+}
+
+.modal-tab .edit-btn:hover {
+    background: #222;
+}
+
+.modal-tab .edit-btn:active {
+    background: #000;
+}
+
+.mymodal input, .mymodal textarea {
+    background: transparent;
+    border: none;
+    color: floralwhite;
+    cursor: pointer;
+    outline: none;
+    padding: .75rem .5rem;
+    font-size: 100%;
+    font-family: inherit;
+}
+
+.mymodal input:disabled {
+    background: rgba(0, 0, 0, 0.418);
+    font-style: italic;
+}
+
+.mymodal textarea {
+    height: 30%;
+}

@@ -1,7 +1,9 @@
 
-.container {
+.wrapper .focus-area .container {
     padding: 1rem;
     width: 100%;
+    height: max-content;
+    overflow-y: scroll;
 }
 
 .container > * {
@@ -93,6 +95,10 @@
     color: white;
 }
 
+.bottom-btns .btn:active {
+    background: #000;
+}
+
 @media only screen and (max-width: 600px) {
     .itm-btn span{
         display: none;
@@ -102,3 +108,5 @@
         margin: 0;
     }
 }
+
+

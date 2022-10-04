@@ -1,54 +1,112 @@
-<div class="first">
-    <div class="header">
-      <div class="send">
-          <ion-icon name="send-sharp"></ion-icon>
+<link rel = 'stylesheet' href = 'css/general.css'>
+<link rel = 'stylesheet' href = 'css/modal.css'>
+
+
+<script src = '../script/base_functions.js'></script>
+<script src = '../script/modal.js'></script>
+
+<body class="flex-center">
+  <button style = 'border: none; outline: none; background: lightgreen; color: white; padding: .75rem;'>click me</button>
+</body>
+
+<script>
+  let mymodal = new Modal('button');
+  mymodal.create_input({disabled: true});
+</script>
+
+<!-- <div class = 'mymodal-case p-fix top-left full-vhw ov-hidden'>
+  
+  <div class = 'mymodal p-abs p-center ov-hidden'>
+  
+    <div class = 'modal-top flex-row flex-between p-abs top-left full-w'>
+      <h4 class = 'modal-title'>Modal Top</h4>
+      <div class = 'modal-close-btn'>
+        <div class = 'close-x flex-center round pointer'>
+          <i class = 'bi bi-x-lg'></i>
+        </div>
       </div>
-          
-      <div class="ellipsis">
-          <button><ion-icon name="ellipsis-horizontal-sharp"></ion-icon></button>
+    </div>
+
+    <div class = 'modal-middle'>
+      <div class = 'modal-tab'>
+  
+        <div class = 'title'>
+          <h6>Customer Name</h6>
+        </div>
+    
+        <div class = 'info p-rel' tabindex = 1>
+          <input type = 'text' name = 'default' placeholder = '' class = 'full-w'>
+          <div class = 'modal-edit-btn p-abs flex-center top-right full-h'>
+            <div class = 'edit-btn flex-center pointer'>
+              <i class = 'bi bi-pencil-square'></i>
+            </div>
+          </div>
+        </div>
+    
+    
       </div>
-  </div>
-  <h4>Acme Plus</h4> 
-      <p>SALES</p>
-  <div class="money-percent">
-      <h1>$24,780</h1>
-      <div class="dresswell">
-          <h5>+49%</h5>
+
+      <div class = 'modal-tab'>
+  
+        <div class = 'title'>
+          <h6>Customer Name</h6>
+        </div>
+    
+        <div class = 'info p-rel' tabindex = 1>
+          <textarea type = 'text' name = 'default' placeholder = '' class = 'full-w'></textarea>
+          <div class = 'modal-edit-btn p-abs flex-center top-right full-h'>
+            <div class = 'edit-btn flex-center pointer'>
+              <i class = 'bi bi-pencil-square'></i>
+            </div>
+          </div>
+        </div>
+    
+    
       </div>
+
+      <div class = 'modal-tab'>
+  
+        <div class = 'title'>
+          <h6>Customer Name</h6>
+        </div>
+    
+        <div class = 'info p-rel' tabindex = 1>
+          <input type = 'text' name = 'default' placeholder = '' class = 'full-w'>
+          <div class = 'modal-edit-btn p-abs flex-center top-right full-h'>
+            <div class = 'edit-btn flex-center pointer'>
+              <i class = 'bi bi-pencil-square'></i>
+            </div>
+          </div>
+        </div>
+    
+    
+      </div>
+
+      <div class = 'modal-tab'>
+  
+        <div class = 'title'>
+          <h6>Customer Name</h6>
+        </div>
+    
+        <div class = 'info p-rel' tabindex = 1>
+          <input type = 'text' name = 'default' placeholder = '' class = 'full-w'>
+          <div class = 'modal-edit-btn p-abs flex-center top-right full-h'>
+            <div class = 'edit-btn flex-center pointer'>
+              <i class = 'bi bi-pencil-square'></i>
+            </div>
+          </div>
+        </div>
+    
+    
+      </div>
+    </div>
+  
+    <div class = 'modal-bottom flex-row flex-center p-abs btm-left full-w'>
+      <div class = 'modal-btn flex-center full-w pointer'>
+        Save
+      </div>
+    </div>
+  
   </div>
 
-  <div class="shadow-lg rounded-lg overflow-hidden">
-      <div class="py-3 px-5 bg-gray-50"></div>
-      <canvas class="p-10" id="chartLine"></canvas>
-    </div>
-    
-    <!-- Required chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Chart line -->
-    <script>
-      const labels = ["January", "February", "March", "April", "May", "June"];
-      const data = {
-        labels: labels,
-        datasets: [
-          {
-            label: "My First dataset",
-            backgroundColor: "hsl(252, 82.9%, 67.8%)",
-            borderColor: "hsl(252, 82.9%, 67.8%)",
-            data: [0, 10, 5, 2, 20, 30, 45],
-          },
-        ],
-      };
-    
-      const configLineChart = {
-        type: "line",
-        data,
-        options: {},
-      };
-    
-      var chartLine = new Chart(
-        document.getElementById("chartLine"),
-        configLineChart
-      );
-    </script>
-</div>
+</div> -->
