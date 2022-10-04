@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <meta charset = 'utf-8'>
+        <meta name = 'viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="customers_list.css">
+
+       <link rel = 'stylesheet' href = 'components/css/general.css'>
+        <link rel = 'stylesheet' href = 'css/variables.css'>
+        <link rel = "stylesheet" href = "components/css/admin.css">
+        <link rel = "stylesheet" href = "components/css/barchart.css">
+        
+        <!-- <link rel = "stylesheet" href = "components/css/value.css"> -->
+        <link rel = 'stylesheet' href = 'css/dashboard.css'>
+
+        <script src = 'script/base_functions.js' defer></script>
+        <script src = 'script/menu_functions.js' defer></script>
+        <script src = 'script/menu.js' defer></script>
+        <script src = 'script/dashboard.js' defer></script>
+
+
+
+    </head>
+    <body>
+        <div class = 'wrapper flex'>
+            <!-- Menu section -->
+            <div class = 'menu left-panel full-vh'>
+                <!-- content box -->
+                <div class = 'contents left-s p-rel z-2'>
+
+                    <!-- menu logo -->
+                    <div class = 'logo left-ss'></div>
+
+                    <!-- menu items -->
+                    <div class = 'menu-item left-ss {{class}}' onclick = 'location.href = "{{link}}"' name = '{{name}}' tabindex="1">
+                        <div class = 'main-value flex-row'>
+                            <div class = 'icon left-sss'>
+                                <i class = 'bi bi-{{icon-name}}'></i>
+                            </div> <!-- menu icon-->
+                            <div class = 'item-value left-sss flex-row flex-between'>
+                                <span>{{name}}</span>
+                                <i class = 'bi bi-chevron-down down {{drop-down}}'></i>
+                            </div> <!-- menu item name-->
+                        </div>
+
+                        <div class = 'drop-down'>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class = 'menu-overlay p-abs top-left full-hw p-rel z-1' onclick = 'deactivate_itm(".menu");'></div>
+            </div>
+            <!--  -->
+
+            <!-- activity area -->
+            <div class = 'focus-area right-panel'>
+                <!-- top bar -->
+                <div class = 'top-bar full-w flex-row flex-between'>
+                    <div class = 'menu-btn' onclick = 'toggle_itm(".menu");'>
+                        <i class = 'bi bi-list'></i>
+                    </div>
+                    <div>Mr Username</div>
+                </div>
+
+                <div class = 'container flex-col flex-row'>
+                    <div class = 'title-row flex-row flex-between'>
+                        <h1>CUSTOMERS</h1>
+                        <div class = 'btn list flex-row'>
+                            <div class = 'itm-btn flex-row'>
+                                <i class = 'bi bi-calendar-date'></i>
+                                <span>Last Month</span>
+                            </div>
+
+                            <div class = 'itm-btn flex-row blue'>
+                                <i class = 'bi bi-plus-circle'></i>
+                                <span>Add Customer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = 'list-box'>
+                        <div class = 'inner-content'>
+                            <div class = 'list-item small'>
+                                <div class = 'col'>CUSTOMER NAME</div>
+                                <div class = 'col'>CUSTOMER CONTACT</div>
+                                <div class = 'col'>CUSTOMER LOCATION</div>
+                                <div class = 'col'>CUSTOMER CURRENT DATE</div>
+                                <div class = 'col'>ACTION</div>
+                                
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                                
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                                
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                                
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                                
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                               
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                                
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                                
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                               
+                            </div>
+
+                            <div class = 'list-item'>
+                                <div class = 'col'>!D42302342</div>
+                                <div class = 'col'>2nd August 2022</div>
+                                <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
+                                <div class = 'col'>500 pieces</div>
+                                <div class = 'col'>active</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+        <script>
+            document.querySelectorAll('.col').forEach( col => {
+                if(col.innerText.length > 10) {
+                    col.innerText = col.innerText.slice(0,10);
+                    console.log('did it');
+                }
+            })
+        </script>
+
+    </body>
+
+</html>
