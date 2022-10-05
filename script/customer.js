@@ -26,6 +26,7 @@ mymodal.create_input({
     placeholder: 'Amount per bag',
     disabled: true,
     onchange: 'calculate_quantity()', 
+
 });
 
 mymodal.create_input({
@@ -34,6 +35,8 @@ mymodal.create_input({
     type: 'text',
     placeholder: 'customer Quantity',
     disabled: true,
+    editable:false,
+    onchange: 'calculate_credit()'
 
 });
 
@@ -43,6 +46,7 @@ mymodal.create_input({
     type: 'number',
     placeholder: 'Supply',
     disabled: true,
+    onchange: 'calculate_credit()'
 
 });
 
@@ -53,6 +57,7 @@ mymodal.create_input({
     placeholder: 'Credit',
     disabled: true,
     editable: false,
+
 });
 
 mymodal.create_input({
@@ -62,9 +67,29 @@ mymodal.create_input({
     placeholder:'Debit',
     disabled: true,
     editable: false,
-
-
 });
+ mymodal.create_input({
+        title:'Amount customer owe',
+        name: 'customer debit',
+        type: 'text',
+        placeholder: 'Amount customer owe',
+        disabled: true,
+        editable: false,
+    })
+
+ mymodal.create_input({
+        title: 'Amount Supplier Owe',
+        name: 'Supplier debit',
+        type: 'text',
+        placeholder: 'Amount user owe ',
+        disabled: true,
+        editable: false,
+
+
+    })
+
+
+
 function calculate_quantity() {
     let amount_payed = mymodal.get_input('payment')    == ''? 1 : mymodal.get_input('payment');
     let Amount_per_Bag  = mymodal.get_input('Amount_per_Bag')  == ''? 1 : mymodal.get_input('Amount_per_Bag');
@@ -82,5 +107,40 @@ function calculate_quantity() {
     let Quantity = parseFloat(amount_payed) / parseFloat(Amount_per_Bag);
 Quantity = Quantity.toFixed(2);
    
-    mymodal.set_input('quantity', `${Quantity} bag(s) );
+    mymodal.set_input('quantity', `${Quantity} bag(s) `);
+    };
+
+    function calculate_credit(){
+        let Quantity = mymodal.get_input('quantity')    == ''? 1 : mymodal.get_input('quantity');
+        let Supply = mymodal.get_input('Supply')    == ''? 1 : mymodal.get_input('Supply');
+        let Amount_per_Bag  = mymodal.get_input('Amount_per_Bag')  == ''? 1 : mymodal.get_input('Amount_per_Bag');
+
+        console.clear();
+        console.log(
+            `
+                amount_payed: ${Quantity},
+                sack_price: ${Supply},
+               
+            `
+        )
+    
+        let crediter = parseFloat(Supply) - parseFloat(Quantity);
+            crediter= crediter.toFixed(2);
+       if (crediter > 0){
+         let credit = mymodal.set_input('Credit', `${crediter} bag(s)`);
+         let profit = crediter * Amount_per_Bag;
+         profit = profit.toFixed(2);
+         let Amount_customer_owe = mymodal.set_input('customer debit', `${profit}`);
+       }
+       
+        else{
+            let debit = mymodal.set_input('Debit', `${crediter} bag(s)`)
+            let loss = crediter * Amount_per_Bag;
+            loss = loss.toFixed(2);
+            let Amount_supplier_owe = mymodal.set_input('Supplier debit',`${loss}`);
+        } 
+        
+
     }
+
+
