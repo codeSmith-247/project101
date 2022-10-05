@@ -8,7 +8,7 @@ let menu_items = {
 
     "Supplier Bonus" : {
         icon : 'piggy-bank-fill',
-        link : 'listing.html',
+        link : 'suplier_bonus.html',
         dropdown: false,
         parent: null
     },
@@ -22,7 +22,7 @@ let menu_items = {
 
     "Customers" : {
         icon : 'people-fill',
-        link : '#',
+        link : 'customers_list.html',
         dropdown: false,
         parent: null
     },
