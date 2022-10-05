@@ -3,7 +3,7 @@ class Modal {
 
     modal_case = `
 
-                    <div class = 'mymodal-case p-fix top-left full-vhw ov-hidden {{classname}}'>
+                    <div class = 'mymodal-case p-fix top-left full-vhw ov-hidden {{classname}} z-4'>
                 
                         <div class = 'mymodal p-abs p-center ov-hidden'>
                         
@@ -35,15 +35,15 @@ class Modal {
 
     modal_input = `
 
-                    <div class = 'modal-tab {{classname}}'>
+                    <div class = 'modal-tab {{classname}} {{editable}}'>
                 
                         <div class = 'title'>
                         <h6>{{title}}</h6>
                         </div>
 
-                        <div class = 'info p-rel'>
+                        <div class = 'info p-rel ov-hidden'>
 
-                            <input type = '{{type}}' name = '{{name}}' placeholder = '{{placeholder}}' value = '{{value}}' {{state}} class = 'full-w inputitem'>
+                            <input type = '{{type}}' name = '{{name}}' placeholder = '{{placeholder}}' value = '{{value}}' {{state}} class = 'full-w inputitem' oninput = '{{onchange}}'>
 
                             <div class = 'modal-edit-btn p-abs flex-center top-right full-h {{editable}}' onclick = 'enable_input(this); {{functions}}'>
                                 <div class = 'edit-btn flex-center pointer'>
@@ -60,7 +60,7 @@ class Modal {
 
     modal_textarea = `
 
-                    <div class = 'modal-tab {{classname}}'>
+                    <div class = 'modal-tab {{classname}} {{editable}}'>
 
                         <div class = 'title'>
                         <h6>{{title}}</h6>
@@ -68,7 +68,7 @@ class Modal {
 
                         <div class = 'info p-rel'>
 
-                            <textarea type = 'text' name = '{{name}}' placeholder = '{{placeholder}}' value = '{{value}}' {{state}} class = 'full-w inputitem'></textarea>
+                            <textarea type = 'text' name = '{{name}}' placeholder = '{{placeholder}}' value = '{{value}}' {{state}} class = 'full-w inputitem' oninput = '{{onchange}}'></textarea>
 
                             <div class = 'modal-edit-btn p-abs flex-center top-right full-h {{editable}}' onclick = 'enable_input(this); {{functions}}'>
                                 <div class = 'edit-btn flex-center pointer'>
@@ -89,7 +89,7 @@ class Modal {
         this.modal_case = this.modal_case.replace('{{classname}}', this.classname);
 
         select('body').innerHTML += this.modal_case;
-        select(trigger_man).setAttribute('onclick', `activate_itm(".${this.classname}")`);
+        selectAll(trigger_man).forEach( trigger => {trigger.setAttribute('onclick', `activate_itm(".${this.classname}")`);});
         select(`.${this.classname} .close-x`).setAttribute('onclick', `deactivate_itm(".${this.classname}")`);
     } 
 
@@ -106,13 +106,14 @@ class Modal {
             disabled: false,
             editable: true,
             functions: '',
+            onchange: '',
         }
 
         let input_obj_keys = Object.keys(input_obj_checker);
 
         input_obj_keys.forEach(property => {
-            if (!input_obj[property]) {
-
+            if (typeof(input_obj[property]) == 'undefined') {
+                
                 input_obj[property] = '';
 
                 if(property == 'disabled') input_obj[property] = false;
@@ -131,14 +132,15 @@ class Modal {
         input = input.replace('{{name}}', input_obj.name);
         input = input.replace('{{value}}', input_obj.value);
         input = input.replace('{{functions}}', input_obj.functions);
+        input = input.replace('{{onchange}}', input_obj.onchange);
         input = input.replace('{{placeholder}}', input_obj.placeholder);
 
         if(input_obj.disabled) {
-            input = input.replace('{{state}}', 'disabled');
+            input = input.replaceAll('{{state}}', 'disabled');
         }
         
         if(input_obj.editable) {
-            input = input.replace('{{editable}}', 'active');
+            input = input.replaceAll('{{editable}}', 'active');
         }
 
         select(`.${this.classname}`).querySelector('.modal-middle').innerHTML += input;
@@ -148,8 +150,12 @@ class Modal {
         return select(`.${this.classname} .inputitem[name = "${name}"]`).value;
     }
 
+    set_input(name, value) {
+        select(`.${this.classname} .inputitem[name = "${name}"]`).value = value;
+    }
+
 }
 
 function enable_input(elem) {
-    let parent = elem.parentElement.querySelector('.inputitem').removeAttribute('disabled');
+    let parent = elem.parentElement.querySelector('.inputitem').toggleAttribute('disabled');
 }
