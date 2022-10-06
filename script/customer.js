@@ -15,7 +15,8 @@ mymodal.create_input({
     type:'number',
     placeholder: 'Customer payment',
     disabled: true,
-    onchange: 'calculate_quantity();',
+    onchange: 'calculate_quantity()', 
+
 });
 
 mymodal.create_input({
@@ -24,7 +25,7 @@ mymodal.create_input({
     type: 'number',
     placeholder: 'Amount per bag',
     disabled: true,
-    onchange: 'calculate_quantity();',
+    onchange: 'calculate_quantity()', 
 });
 
 mymodal.create_input({
@@ -64,22 +65,23 @@ mymodal.create_input({
 
 
 });
-
 function calculate_quantity() {
-    let amount_payed    = mymodal.get_input('payment')    == ''? 1 : mymodal.get_input('payment');
-    let amount_per_bg   = mymodal.get_input('Amount_per_Bag')  == ''? 1 : mymodal.get_input('Amount_per_Bag');
+    let amount_payed = mymodal.get_input('payment')    == ''? 1 : mymodal.get_input('payment');
+    let Amount_per_Bag  = mymodal.get_input('Amount_per_Bag')  == ''? 1 : mymodal.get_input('Amount_per_Bag');
+  
 
     console.clear();
     console.log(
         `
             amount_payed: ${amount_payed},
-            amount_per_bg: ${amount_per_bg},
+            sack_price: ${Amount_per_Bag},
+           
         `
     )
 
-    let quantity  = parseFloat(amount_payed) / parseFloat(amount_per_bg);
-
-    quantity = quantity.toFixed(2);
-
-    mymodal.set_input('quantity', `${quantity} bag(s)`);
+    let Quantity = parseFloat(amount_payed) / parseFloat(Amount_per_Bag);
+Quantity = Quantity.toFixed(2);
+   
+    mymodal.set_input('quantity', `${Quantity} bag(s)`);
+    
 }
