@@ -68,6 +68,7 @@ mymodal.create_input({
     disabled: true,
     editable: false,
 });
+
  mymodal.create_input({
         title:'Amount customer owe',
         name: 'customer debit',
@@ -105,13 +106,13 @@ function calculate_quantity() {
     )
 
     let Quantity = parseFloat(amount_payed) / parseFloat(Amount_per_Bag);
-Quantity = Quantity.toFixed(2);
+    Quantity = Quantity.toFixed(2);
    
     mymodal.set_input('quantity', `${Quantity} bag(s) `);
-    };
+};
 
-    function calculate_credit(){
-        let Quantity = mymodal.get_input('quantity')    == ''? 1 : mymodal.get_input('quantity');
+function calculate_credit(){
+        let Quantity = mymodal.get_input('quantity')== ''? 1 : mymodal.get_input('quantity');
         let Supply = mymodal.get_input('Supply')    == ''? 1 : mymodal.get_input('Supply');
         let Amount_per_Bag  = mymodal.get_input('Amount_per_Bag')  == ''? 1 : mymodal.get_input('Amount_per_Bag');
 
@@ -125,22 +126,32 @@ Quantity = Quantity.toFixed(2);
         )
     
         let crediter = parseFloat(Supply) - parseFloat(Quantity);
-            crediter= crediter.toFixed(2);
+        crediter = crediter.toFixed(2);
+
        if (crediter > 0){
-         let credit = mymodal.set_input('Credit', `${crediter} bag(s)`);
+         mymodal.set_input('Credit', `${crediter} bag(s)`);
+         mymodal.set_input('Debit', `0 bag(s)`); // clear the previous debit input( since there is no more debit)
+
+
          let profit = crediter * Amount_per_Bag;
          profit = profit.toFixed(2);
-         let Amount_customer_owe = mymodal.set_input('customer debit', `${profit}`);
+
+         mymodal.set_input('Supplier debit',``); // clear the previous debit input (no more debit input only credit input now)
+         mymodal.set_input('customer debit', `${profit}`);
        }
        
-        else{
-            let debit = mymodal.set_input('Debit', `${crediter} bag(s)`)
+       else {
+            mymodal.set_input('Debit', `${crediter} bag(s)`)
+            mymodal.set_input('Credit', `0 bag(s)`);  // clear the previous credit input ( since there is no more credit only debit)
+
             let loss = crediter * Amount_per_Bag;
             loss = loss.toFixed(2);
-            let Amount_supplier_owe = mymodal.set_input('Supplier debit',`${loss}`);
+
+            mymodal.set_input('customer debit', ``); // clear the previous debit input ( no more customer debit input only suplier debit now)
+            mymodal.set_input('Supplier debit',`${loss}`); 
         } 
         
 
-    }
+}
 
 
