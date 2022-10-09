@@ -36,7 +36,7 @@ mymodal.create_input({
     placeholder: 'customer Quantity',
     disabled: true,
     editable:false,
-    onchange: 'calculate_credit()'
+    onchange: 'calculate_credit()',
 
 });
 
@@ -46,7 +46,7 @@ mymodal.create_input({
     type: 'number',
     placeholder: 'Supply',
     disabled: true,
-    onchange: 'calculate_credit()'
+    onchange: 'calculate_credit()',
 
 });
 
@@ -126,14 +126,14 @@ Quantity = Quantity.toFixed(2);
     
         let crediter = parseFloat(Supply) - parseFloat(Quantity);
             crediter= crediter.toFixed(2);
-       if (crediter > 0){
+       if (crediter >= 0){
          let credit = mymodal.set_input('Credit', `${crediter} bag(s)`);
          let profit = crediter * Amount_per_Bag;
          profit = profit.toFixed(2);
          let Amount_customer_owe = mymodal.set_input('customer debit', `${profit}`);
        }
        
-        else{
+      else{
             let debit = mymodal.set_input('Debit', `${crediter} bag(s)`)
             let loss = crediter * Amount_per_Bag;
             loss = loss.toFixed(2);
