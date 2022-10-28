@@ -36,7 +36,7 @@ mymodal.create_input({
     placeholder: 'customer Quantity',
     disabled: true,
     editable:false,
-    onchange: 'calculate_credit()'
+    onchange: 'calculate_credit()',
 
 });
 
@@ -46,7 +46,7 @@ mymodal.create_input({
     type: 'number',
     placeholder: 'Supply',
     disabled: true,
-    onchange: 'calculate_credit()'
+    onchange: 'calculate_credit()',
 
 });
 
@@ -126,11 +126,13 @@ function calculate_credit(){
         )
     
         let crediter = parseFloat(Supply) - parseFloat(Quantity);
+
         crediter = crediter.toFixed(2);
 
        if (crediter > 0){
          mymodal.set_input('Credit', `${crediter} bag(s)`);
          mymodal.set_input('Debit', `0 bag(s)`); // clear the previous debit input( since there is no more debit)
+
 
 
          let profit = crediter * Amount_per_Bag;
@@ -139,16 +141,16 @@ function calculate_credit(){
          mymodal.set_input('Supplier debit',``); // clear the previous debit input (no more debit input only credit input now)
          mymodal.set_input('customer debit', `${profit}`);
        }
-       
-       else {
+   else    
+ {
             mymodal.set_input('Debit', `${crediter} bag(s)`)
             mymodal.set_input('Credit', `0 bag(s)`);  // clear the previous credit input ( since there is no more credit only debit)
 
             let loss = crediter * Amount_per_Bag;
             loss = loss.toFixed(2);
 
-            mymodal.set_input('customer debit', ``); // clear the previous debit input ( no more customer debit input only suplier debit now)
-            mymodal.set_input('Supplier debit',`${loss}`); 
+            mymodal.set_input('customer debit', `${loss}`); // clear the previous debit input ( no more customer debit input only suplier debit now)
+            mymodal.set_input('Supplier debit',``); 
         } 
         
 
