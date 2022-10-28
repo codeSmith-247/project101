@@ -4,10 +4,9 @@ mymodal.create_input({
     title: 'Supplier\'s Name',
     name:  'supplier_name',
     type:  'text',
-    placeholder: 'Driver\'s Name',
+    placeholder: 'e.g Cementagon Cement Limited',
     disabled: true,
 });
-
 
 mymodal.create_input({
     title: 'Suplier\'s Contact',
@@ -16,7 +15,6 @@ mymodal.create_input({
     placeholder: 'e.g 0550000000',
     disabled: true,
 });
-
 
 mymodal.create_input({
     title: 'Location',
@@ -46,15 +44,30 @@ function create_new_supplier() {
     let location      = mymodal.get_input('location');
     let date          = mymodal.get_input('date');
 
+    if(is_empty(supplier_name) || is_empty(contact) || is_empty(location) || is_empty(date)) {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Empty Input',
+            text: 'Please check all input fields and try again!'
+        })
+
+        return false;
+    }
+
     // activate_itm('.loader');
 
     $.ajax({
         method: 'POST',
-        url: '',
-        data: {},
+        url: 'backend/supplier/create_supplier.php',
+        data: {name: supplier_name, contact: contact, location: location, date: date},
         success: (data) => {
+
             console.log(data);
 
+            insert_new_supplier_ui(supplier_name, contact, location, date);
+
+            mymodal.close_modal();
             // deactivate_itm('.loader');
         }
     });
@@ -64,7 +77,7 @@ function insert_new_supplier_ui(name, contact, location, date) {
 
     let supplier_tab = `
         <div class = 'list-item'>
-        
+
             <div class = 'col'>${name}</div>
             <div class = 'col'>${contact}</div>
             <div class = 'col'>${location}</div>
@@ -77,4 +90,33 @@ function insert_new_supplier_ui(name, contact, location, date) {
 
         </div>
     `;
+
+    let list = select('.list-box .inner-content');
+    list.insertAdjacentHTML('afterbegin', supplier_tab);
 }
+
+function is_empty(value) {
+    if (value.length == 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function list_suppliers() {
+
+    $.ajax({
+        method: 'get',
+        url: 'backend/supplier/list_suppliers.php',
+        data: '',
+        success: (data) => {
+            console.log(data);
+
+            data.forEach( supplier => {
+                insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date);
+            })
+        }
+    })
+}
+
+list_suppliers();

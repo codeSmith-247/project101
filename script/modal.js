@@ -175,6 +175,10 @@ class Modal {
         activate_itm(`.${this.classname}`);
     }
 
+    close_modal() {
+        deactivate_itm(`.${this.classname}`);
+    }
+
 }
 
 function enable_input(elem) {
