@@ -15,7 +15,7 @@ let menu_items = {
 
     "Suppliers" : {
         icon : 'truck',
-        link : 'suplier.html',
+        link : 'supliers.html',
         dropdown: false,
         parent: null
     },

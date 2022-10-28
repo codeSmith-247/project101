@@ -83,6 +83,8 @@ class Modal {
 
     `;
 
+    input_array = [];
+
     constructor(trigger_man) {
 
         this.classname = 'unique' + Date.now().toString(); //this allows multiple modals to be created with different class names
@@ -119,6 +121,7 @@ class Modal {
                 if(property == 'disabled') input_obj[property] = false;
                 else if(property == 'editable') input_obj[property] = true;
                 else if(property == 'type') input_obj[property] = 'text';
+                else if(property == 'name') this.input_array.push(input_obj['name']);
 
             }
 
@@ -152,6 +155,24 @@ class Modal {
 
     set_input(name, value) {
         select(`.${this.classname} .inputitem[name = "${name}"]`).value = value;
+    }
+
+    clear_input(name) {
+        this.set_input(name, '');
+    }
+
+    clear_all_input() {
+        this.input_array.forEach( input_name => {
+            this.clear_all_input(input_name);
+        })
+    }
+
+    set_btn_function(function_definition_string) {
+        select(`.${this.classname} .modal-bottom .modal-btn`).setAttribute('onclick', function_definition_string)
+    }
+
+    open_modal() {
+        activate_itm(`.${this.classname}`);
     }
 
 }

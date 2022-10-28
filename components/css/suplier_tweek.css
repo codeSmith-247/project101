@@ -11,11 +11,14 @@
 }
 
 .list-item .btn {
-    background: #3f3f3f;
+    background: #00203c;
     border-radius: 10px;
     box-shadow: 0 0 5px #44444472;
     color: var(--primary);
     padding: .5rem 1rem;
+
+    min-width: 70px;
+    margin: 0 .25rem;
 }
 
 .list-item .btn:hover {
@@ -25,4 +28,39 @@
 .list-item .btn:active {
     background: rgb(144, 144, 255);
     box-shadow: none;
+}
+
+
+.search_box {
+    background: red;
+}
+
+.search_box > * {
+    height: 50px;
+}
+
+.search_box .input {
+    width: 95%;
+}
+
+.search_box .search_btn {
+    background: #00203c;
+    border: 0.1px solid #00203c;
+
+    color: white;
+    cursor: pointer;
+
+    min-width: 10% ;
+}
+
+input {
+    outline: none;
+    border: 0.1px solid #00203c;
+    padding: 0 1rem;
+    
+    font-size: 100%;
+}
+
+.itm-btn.flex-row.blue {
+    margin-right: 0;
 }

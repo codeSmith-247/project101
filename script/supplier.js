@@ -1,4 +1,30 @@
-let mymodal = new Modal('.list-item .btn');
+let mymodal = new Modal('.list-item .btn.edit');
+
+mymodal.create_input({
+    title: 'Supplier\'s Name',
+    name:  'supplier_name',
+    type:  'text',
+    placeholder: 'Driver\'s Name',
+    disabled: true,
+});
+
+
+mymodal.create_input({
+    title: 'Suplier\'s Contact',
+    name:  'contact',
+    type:  'tel',
+    placeholder: 'e.g 0550000000',
+    disabled: true,
+});
+
+
+mymodal.create_input({
+    title: 'Location',
+    name:  'location',
+    type:  'text',
+    placeholder: 'e.g Accra Circle',
+    disabled: true,
+});
 
 mymodal.create_input({
     title: 'Supplier Date',
@@ -8,108 +34,47 @@ mymodal.create_input({
     disabled: true,
 });
 
-mymodal.create_input({
-    title: 'Amount Paid',
-    name:  'payment',
-    type:  'number',
-    placeholder: 'supplier payment',
-    disabled: true,
-    onchange: 'calculate_quantity()',
-});
+function open_new_supplier() {
+    mymodal.clear_all_input();
+    mymodal.set_btn_function('create_new_supplier();');
+    mymodal.open_modal();
+}
 
-mymodal.create_input({
-    title: 'Unit Sack Price',
-    name:  'unit_sack',
-    type:  'number',
-    placeholder: 'supplier quantity',
-    disabled: true,
-    onchange: 'calculate_quantity()',
-});
+function create_new_supplier() {
+    let supplier_name = mymodal.get_input('supplier_name');
+    let contact       = mymodal.get_input('contact');
+    let location      = mymodal.get_input('location');
+    let date          = mymodal.get_input('date');
 
-mymodal.create_input({
-    title: 'Unit Paper Price',
-    name:  'unit_paper',
-    type:  'number',
-    placeholder: 'supplier quantity',
-    disabled: true,
-    onchange: 'calculate_quantity()',
-});
+    // activate_itm('.loader');
 
-mymodal.create_input({
-    title: 'Quantity Entitled',
-    name:  'quantity',
-    type:  'text',
-    placeholder: 'supplier quantity',
-    disabled: true,
-    editable: false,
-});
+    $.ajax({
+        method: 'POST',
+        url: '',
+        data: {},
+        success: (data) => {
+            console.log(data);
 
-mymodal.create_input({
-    title: 'Paper Supplied',
-    name:  'paper_supply',
-    type:  'number',
-    placeholder: 'Supply',
-    disabled: true,
-});
+            // deactivate_itm('.loader');
+        }
+    });
+}
 
-mymodal.create_input({
-    title: 'Sack Supplied',
-    name:  'sack_supply',
-    type:  'number',
-    placeholder: 'Supply',
-    disabled: true,
-});
+function insert_new_supplier_ui(name, contact, location, date) {
 
-mymodal.create_input({
-    title: 'Credit total',
-    name:  'credit',
-    type:  'number',
-    placeholder: 'Credit',
-    disabled: true,
-});
+    let supplier_tab = `
+        <div class = 'list-item'>
+        
+            <div class = 'col'>${name}</div>
+            <div class = 'col'>${contact}</div>
+            <div class = 'col'>${location}</div>
+            <div class = 'col'>${date}</div>
 
-mymodal.create_input({
-    title: 'Driver\'s Name',
-    name:  'driver_name',
-    type:  'text',
-    placeholder: 'Driver\'s Name',
-    disabled: true,
-});
+            <div class = 'col'>
+                <div class = 'btn edit'>edit</div>
+                <div class = 'btn open'>open</div>
+            </div>
 
-mymodal.create_input({
-    title: 'Customer\'s Name',
-    name:  'customer_name',
-    type:  'text',
-    placeholder: 'Customer\'s Name',
-    disabled: true,
-});
-
-mymodal.create_input({
-    title: 'Invoice Number',
-    name:  'invoice_number',
-    type:  'number',
-    placeholder: 'Invoice Number',
-    disabled: true,
-});
-
-
-function calculate_quantity() {
-    let amount_payed = mymodal.get_input('payment')    == ''? 1 : mymodal.get_input('payment');
-    let sack_price   = mymodal.get_input('unit_sack')  == ''? 1 : mymodal.get_input('unit_sack');
-    let paper_price  = mymodal.get_input('unit_paper') == ''? 1 : mymodal.get_input('unit_paper');
-
-    console.clear();
-    console.log(
-        `
-            amount_payed: ${amount_payed},
-            sack_price: ${sack_price},
-            paper_price: ${paper_price}
-        `
-    )
-
-    let num_of_sack  = parseFloat(amount_payed) / parseFloat(sack_price);
-    let num_of_paper = parseFloat(amount_payed) / parseFloat(paper_price);
-    num_of_sack = num_of_sack.toFixed(2);
-    num_of_paper = num_of_paper.toFixed(2);
-    mymodal.set_input('quantity', `${num_of_sack} sack(s) / ${num_of_paper} paper(s)`);
+        </div>
+    `;
 }
