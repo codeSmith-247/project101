@@ -13,6 +13,7 @@
         <link rel = "stylesheet" href = "css/listing.css">
         <link rel = "stylesheet" href = "css/suplier_tweek.css">
         <link rel = "stylesheet" href = "css/modal.css">
+        <link rel = "stylesheet" href = "css/date_search.css">
         <!-- <link rel = "stylesheet" href = "css/value.css"> -->
         <link rel = 'stylesheet' href = 'css/dashboard.css'>
 
@@ -81,7 +82,7 @@
                         <div class = 'title-row flex-row flex-between'>
                             <h1>Suplier</h1>
                             <div class = 'btn list flex-row'>
-                                <div class = 'itm-btn flex-row'>
+                                <div class = 'itm-btn flex-row' onclick = 'activate_itm(".date-search-case");'>
                                     <i class = 'bi bi-calendar-date'></i>
                                     <span>Date search</span>
                                 </div>
@@ -123,6 +124,37 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Date Search Filter -->
+                
+                <div class = 'date-search-case flex-col flex-center p-abs top-left full-vhw'>
+                    <div class = 'date-search-box p-rel'>
+
+                        <div class = 'modal-close-btn p-abs' onclick = 'deactivate_itm(".date-search-case");'>
+                            <div class = 'close-x flex-center round pointer'>
+                                <i class = 'bi bi-x-lg'></i>
+                            </div>
+                        </div>
+
+                        <div class = 'start-date flex-col'>
+                            <label>Start Date</label>
+                            <input type = 'date' name = 'start_date'>
+                        </div>
+                
+                        <div class = 'end-date flex-col'>
+                            <label>End Date</label>
+                            <input type = 'date' name = 'end_date'>
+                        </div>
+
+                        <div class = 'search_btn full-w flex-center'>
+                            Search
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+
             </div>
         </div>  
         

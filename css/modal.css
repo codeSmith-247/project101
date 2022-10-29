@@ -55,7 +55,7 @@
 
 .close-x {
     --size: 30px;
-    background: #fa4437;
+    background: #ee3022;
     height: var(--size);
     width: var(--size);
 }
