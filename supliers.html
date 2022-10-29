@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang = 'en'>
+
     <head>
         <meta charset = 'utf-8'>
         <meta name = 'viewport' content='width=device-width, initial-scale=1.0'>
         <title>Dashboard</title>
 
-        <link rel = 'stylesheet' href = 'components/css/general.css'>
+        <link rel = 'stylesheet' href = 'css/general.css'>
         <link rel = 'stylesheet' href = 'css/variables.css'>
-        <link rel = "stylesheet" href = "components/css/admin.css">
-        <link rel = "stylesheet" href = "components/css/barchart.css">
-        <link rel = "stylesheet" href = "components/css/listing.css">
-        <link rel = "stylesheet" href = "components/css/suplier_tweek.css">
-        <link rel = "stylesheet" href = "components/css/modal.css">
-        <!-- <link rel = "stylesheet" href = "components/css/value.css"> -->
+        <link rel = "stylesheet" href = "css/admin.css">
+        <link rel = "stylesheet" href = "css/barchart.css">
+        <link rel = "stylesheet" href = "css/listing.css">
+        <link rel = "stylesheet" href = "css/suplier_tweek.css">
+        <link rel = "stylesheet" href = "css/modal.css">
+        <!-- <link rel = "stylesheet" href = "css/value.css"> -->
         <link rel = 'stylesheet' href = 'css/dashboard.css'>
 
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" defer></script>
@@ -23,12 +24,13 @@
         <script src = 'script/menu.js' defer></script>
         <script src = 'script/dashboard.js' defer></script>
         <script src = 'script/modal.js' defer></script>
-        <script src = 'script/supplier.js' defer></script>
+        <script src = 'script/supplier/supplier.js' defer></script>
 
 
 
 
     </head>
+
     <body>
         <div class = 'wrapper flex'>
             <!-- Menu section -->
@@ -81,7 +83,7 @@
                             <div class = 'btn list flex-row'>
                                 <div class = 'itm-btn flex-row'>
                                     <i class = 'bi bi-calendar-date'></i>
-                                    <span>Last Month</span>
+                                    <span>Date search</span>
                                 </div>
 
                                 <div class = 'itm-btn flex-row blue' onclick = 'open_new_supplier();'>
@@ -102,7 +104,6 @@
                             </div>
                         </div>
 
-
                         <div class = 'list-box p-rel'>
                             <div class = 'inner-content'>
 
@@ -112,82 +113,17 @@
                                     <div class = 'col'>Location</div>
                                     <div class = 'col'>Date</div>
                                     <div class = 'col'>Action</div>
-                                    <!--
-                                    <div class = 'col'>ITEMS</div>
-                                    <div class = 'col'>LOCATION</div>
-                                    <div class = 'col'>PAYMENT TYPE</div> -->
                                 </div>
-
-                                <!-- <div class = 'list-item'>
-                                    <div class = 'col'>!D42302342</div>
-                                    <div class = 'col'>2nd August 2022</div>
-                                    <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
-                                    <div class = 'col'>500 pieces</div>
-                                    <div class = 'col'>
-                                        <div class = 'btn edit'>edit</div>
-                                        <div class = 'btn open'>open</div>
-                                    </div>
-                                </div>
-
-                                <div class = 'list-item'>
-                                    <div class = 'col'>!D42302342</div>
-                                    <div class = 'col'>2nd August 2022</div>
-                                    <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
-                                    <div class = 'col'>500 pieces</div>
-                                    <div class = 'col'>
-                                        <div class = 'btn edit'>edit</div>
-                                        <div class = 'btn open'>open</div>
-                                    </div>
-                                </div>
-
-                                <div class = 'list-item'>
-                                    <div class = 'col'>!D42302342</div>
-                                    <div class = 'col'>2nd August 2022</div>
-                                    <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
-                                    <div class = 'col'>500 pieces</div>
-                                    <div class = 'col'>
-                                        <div class = 'btn edit'>edit</div>
-                                        <div class = 'btn open'>open</div>
-                                    </div>
-                                </div>
-
-                                <div class = 'list-item'>
-                                    <div class = 'col'>!D42302342</div>
-                                    <div class = 'col'>2nd August 2022</div>
-                                    <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
-                                    <div class = 'col'>500 pieces</div>
-                                    <div class = 'col'>
-                                        <div class = 'btn edit'>edit</div>
-                                        <div class = 'btn open'>open</div>
-                                    </div>
-                                </div>
-
-                                <div class = 'list-item'>
-                                    <div class = 'col'>!D42302342</div>
-                                    <div class = 'col'>2nd August 2022</div>
-                                    <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
-                                    <div class = 'col'>500 pieces</div>
-                                    <div class = 'col'>
-                                        <div class = 'btn edit'>edit</div>
-                                        <div class = 'btn open'>open</div>
-                                    </div>
-                                </div>
-
-                                <div class = 'list-item'>
-                                    <div class = 'col'>!D42302342</div>
-                                    <div class = 'col'>2nd August 2022</div>
-                                    <div class = 'col'>James Bond Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, ab minima voluptas facere, eligendi aperiam eum nobis, laudantium blanditiis magnam repudiandae pariatur enim error aspernatur architecto iure magni ipsa ex!</div>
-                                    <div class = 'col'>500 pieces</div>
-                                    <div class = 'col'>
-                                        <div class = 'btn edit'>edit</div>
-                                        <div class = 'btn open'>open</div>
-                                    </div>
-                                </div> -->
  
+                            </div>
+                        </div>
+
+                        <div class = 'bottom-btns flex-row flex-end'>
+                            <div class = 'showmore-btn btn'>Show More</div>
+                        </div>
                     </div>
                 </div>
             </div>
-          
         </div>  
         
         <script>

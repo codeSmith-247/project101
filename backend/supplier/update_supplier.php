@@ -6,6 +6,7 @@ $name       = $_POST['name'];
 $contact    = $_POST['contact'];
 $location   = $_POST['location'];
 $date       = $_POST['date'];
+$id         = $_POST['id'];
 
-create_new_supplier($name, $contact, $location, $date);
+update_supplier($name, $contact, $location, $date, $id);
 

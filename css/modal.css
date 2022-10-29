@@ -32,8 +32,20 @@
     padding: .55rem 1rem;
 }
 
+.modal-btn.second {
+    display: none;
+}
+
+.modal-btn.second.active {
+    display: flex;
+}
+
 .modal-btn:hover {
     background: rgb(62, 203, 62);
+}
+
+.modal-btn.second:hover {
+    background: rgb(217, 61, 61);
 }
 
 .modal-title {
@@ -133,4 +145,11 @@
 
 .mymodal textarea {
     height: 30%;
+}
+
+
+@media (max-width: 520px) {
+    .mymodal {
+        width: 95vw;
+    }
 }

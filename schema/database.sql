@@ -8,7 +8,8 @@ create table suppliers (
     name        varchar(150) not null,
     contact     varchar(15) not null unique key,
     location    varchar(200) not null,
-    date        timestamp not null default current_timestamp
+    date        timestamp not null default current_timestamp,
+    state       varchar(10) not null default 'active'
 
 ) default charset utf8;
 
@@ -26,6 +27,7 @@ create table supply_data (
     customer         varchar(150) not null,
 
     date             timestamp not null default current_timestamp,
+    state           varchar(10) not null default 'active',
 
     foreign key (supplier_id) references suppliers(id) on update cascade on delete cascade
 
@@ -39,7 +41,8 @@ create table customers (
     name      varchar(150) not null,
     contact   varchar(15) not null unique key,
     location  varchar(200) not null,
-    date      timestamp not null default current_timestamp
+    date      timestamp not null default current_timestamp,
+    state           varchar(10) not null default 'active'
 
 ) default charset utf8;
 
@@ -58,6 +61,7 @@ create table customer_data (
     amount_owing    int not null default 0,
     
     date             timestamp not null default current_timestamp,
+    state            varchar(10) not null default 'active',
 
     foreign key (customer_id) references customers(id) on update cascade on delete cascade
 
@@ -77,6 +81,7 @@ create table bonus_data (
     credit_total        int not null default 0,
     
     date             timestamp not null default current_timestamp,
+    state           varchar(10) not null default 'active',
 
     foreign key (giver_id) references suppliers(id) on update cascade on delete cascade
 

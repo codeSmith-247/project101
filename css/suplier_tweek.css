@@ -30,11 +30,6 @@
     box-shadow: none;
 }
 
-
-.search_box {
-    background: red;
-}
-
 .search_box > * {
     height: 50px;
 }
@@ -63,4 +58,10 @@ input {
 
 .itm-btn.flex-row.blue {
     margin-right: 0;
+}
+
+.wrapper .showmore-btn {
+    background: #00203c;
+    color: #fff;
+
 }

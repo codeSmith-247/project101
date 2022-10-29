@@ -22,8 +22,11 @@ class Modal {
                         </div>
                         
                         <div class = 'modal-bottom flex-row flex-center p-abs btm-left full-w'>
-                            <div class = 'modal-btn flex-center full-w pointer'>
+                            <div class = 'modal-btn first flex-center full-w pointer'>
                                 Save
+                            </div>
+                            <div class = 'modal-btn second flex-center full-w pointer'>
+                                Delete
                             </div>
                         </div>
                         
@@ -167,8 +170,17 @@ class Modal {
         })
     }
 
-    set_btn_function(function_definition_string) {
-        select(`.${this.classname} .modal-bottom .modal-btn`).setAttribute('onclick', function_definition_string)
+    set_first_btn_function(function_definition_string) {
+        select(`.${this.classname} .modal-bottom .modal-btn.first`).setAttribute('onclick', function_definition_string);
+    }
+
+    set_second_btn_function(function_definition_string) {
+        select(`.${this.classname} .modal-bottom .modal-btn.second`).setAttribute('onclick', function_definition_string);
+        activate_itm(`.${this.classname} .modal-bottom .modal-btn.second`);
+    }
+
+    deactivate_second_btn() {
+        deactivate_itm(`.${this.classname} .modal-bottom .modal-btn.second`);
     }
 
     open_modal() {
