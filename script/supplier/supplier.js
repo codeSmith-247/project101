@@ -32,6 +32,13 @@ mymodal.create_input({
     disabled: true,
 });
 
+let search_param = {
+    last_id: '',
+    start_date: '',
+    end_date: '',
+    search: '',
+}
+
 function open_new_supplier() {
     mymodal.clear_all_input();
     mymodal.set_first_btn_function('create_new_supplier();');
@@ -147,12 +154,20 @@ function list_suppliers() {
         url: 'backend/supplier/list_suppliers.php',
         data: '',
         success: (data) => {
+            
+            get_last_id(data);
 
             data.forEach( supplier => {
                 insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
             })
+
         }
     })
+}
+
+function get_last_id(data) {
+    let data_length = data.length - 1;
+    search_param.last_id = data[data_length].id;
 }
 
 function empty_the_list() {
@@ -308,6 +323,123 @@ function update_supplier(id) {
 
         
             // deactivate_itm('.loader');
+        }
+    });
+}
+
+function date_search() {
+
+    search_param.start_date = select('.date-search-box .start-date input').value;
+    search_param.end_date   = select('.date-search-box .end-date input').value;
+
+    $.ajax({
+        method: 'POST',
+        url: 'backend/supplier/date_search.php',
+        data: {start_date: search_param.start_date, end_date: search_param.end_date, search: search_param.search},
+        success: (data) => {
+
+            if(data == 'error') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unable to Filter Date',
+                    text: 'Please contact tech support'
+                })
+            }
+            else if( data.length > 0)
+            {
+                get_last_id(data);
+                empty_the_list();
+    
+                data.forEach( supplier => {
+                    insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
+                });
+            }
+            else {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Nothing Between Selected Dates',
+                    text: 'Use different dates and try again'
+                })
+            }
+
+        
+        }
+    });
+    
+}
+
+function input_search() {
+    search_param.start_date = '';
+    search_param.end_date   = '';
+    search_param.search = select('.search_box input').value;
+
+    $.ajax({
+        method: 'POST',
+        url: 'backend/supplier/input_search.php',
+        data: {search: search_param.search},
+        success: (data) => {
+
+            if(data == 'error') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unable to Provide Search Result',
+                    text: 'Please contact tech support'
+                })
+            }
+
+            else if( data.length > 0)
+            {
+                get_last_id(data); 
+                empty_the_list();
+                data.forEach( supplier => {
+                    insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
+                });
+            }
+
+            else {
+                empty_the_list();
+
+            }
+
+        
+        }
+    });
+}
+
+function show_more() {
+
+    $.ajax({
+        method: 'POST',
+        url: 'backend/supplier/show_more.php',
+        data: {start_date: search_param.start_date, end_date: search_param.end_date, search: search_param.search, last_id: search_param.last_id},
+        success: (data) => {
+
+            if(data == 'error') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unable to Provide More Result',
+                    text: 'Please contact tech support'
+                })
+            }
+
+            else if( data.length > 0)
+            {
+                get_last_id(data);    
+                data.forEach( supplier => {
+                    insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
+                });
+            }
+
+            else {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'No More Data To Show',
+                    text: 'you have reached the end of the supplier list'
+                });
+
+            }
+
+        
         }
     });
 }
