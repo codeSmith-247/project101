@@ -1,5 +1,6 @@
 let mymodal = new Modal('.list-item .btn.edit');
 
+
 mymodal.create_input({
     title: 'Supplier\'s Name',
     name:  'supplier_name',
@@ -37,10 +38,29 @@ let search_param = {
     start_date: '',
     end_date: '',
     search: '',
-}
+};
+
+let generic = new Generic_CRUD(mymodal);
+
+generic.key_word = 'Supplier';
+
+generic.list_header = 
+`<div class = 'list-item small p-abs top-left full-hw z-2'>
+    <div class = 'col'>Name</div>
+    <div class = 'col'>Contact</div>
+    <div class = 'col'>Location</div>
+    <div class = 'col'>Date</div>
+    <div class = 'col'>Action</div>
+</div>
+`;
+
+generic.search_param = search_param;
+
+
 
 function open_new_supplier() {
     mymodal.clear_all_input();
+
     mymodal.set_first_btn_function('create_new_supplier();');
     mymodal.deactivate_second_btn();
     mymodal.open_modal();
@@ -439,9 +459,9 @@ function show_more() {
 
             }
 
-        
         }
     });
+
 }
 
 list_suppliers();
