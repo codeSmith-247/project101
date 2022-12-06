@@ -25,6 +25,7 @@
         <script src = 'script/menu.js' defer></script>
         <script src = 'script/dashboard.js' defer></script>
         <script src = 'script/modal.js' defer></script>
+        <script src = 'script/generic/generic.js' defer></script>
         <script src = 'script/supplier/supplier.js' defer></script>
 
 
@@ -87,7 +88,7 @@
                                     <span>Date search</span>
                                 </div>
 
-                                <div class = 'itm-btn flex-row blue' onclick = 'open_new_supplier();'>
+                                <div class = 'itm-btn flex-row blue' onclick = 'generic.new();'>
                                     <i class = 'bi bi-plus-circle'></i>
                                     <span>Add Supplier</span>
                                 </div>
@@ -97,10 +98,10 @@
                         <div class = 'search_box flex-row'>
 
                             <div class = 'input'>
-                                <input type = 'text' name = 'search' class = 'full-hw' placeholder = 'Type here to search for a particular Suplier...' oninput="input_search();">
+                                <input type = 'text' name = 'search' class = 'full-hw' placeholder = 'Type here to search for a particular Suplier...' oninput="generic.input_search();">
                             </div>
 
-                            <div class = 'search_btn flex-center' onclick="input_search();">
+                            <div class = 'search_btn flex-center' onclick="generic.input_search();">
                                 <i class = 'bi bi-search'></i>
                             </div>
                         </div>
@@ -120,7 +121,7 @@
                         </div>
 
                         <div class = 'bottom-btns flex-row flex-end'>
-                            <div class = 'showmore-btn btn' onclick = 'show_more();'>Show More</div>
+                            <div class = 'showmore-btn btn' onclick = 'generic.show_more();'>Show More</div>
                         </div>
                     </div>
                 </div>
@@ -145,7 +146,7 @@
                             <input type = 'date' name = 'end_date'>
                         </div>
 
-                        <div class = 'search_btn full-w flex-center' onclick = 'date_search();'>
+                        <div class = 'search_btn full-w flex-center' onclick = 'generic.date_search();'>
                             Search
                         </div>
 

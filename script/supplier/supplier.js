@@ -33,12 +33,7 @@ mymodal.create_input({
     disabled: true,
 });
 
-let search_param = {
-    last_id: '',
-    start_date: '',
-    end_date: '',
-    search: '',
-};
+
 
 let generic = new Generic_CRUD(mymodal);
 
@@ -54,86 +49,31 @@ generic.list_header =
 </div>
 `;
 
-generic.search_param = search_param;
+generic.ui_callback = new_ui_callback;
 
+generic.set_values_callback = set_value_callback;
 
+generic.update_callback = update_callback;
 
-function open_new_supplier() {
-    mymodal.clear_all_input();
+generic.delete_callback = delete_callback;
 
-    mymodal.set_first_btn_function('create_new_supplier();');
-    mymodal.deactivate_second_btn();
-    mymodal.open_modal();
-}
+generic.get_input_obj = {name: 'supplier_name', contact: 'contact', location: 'location', date: 'date'};
 
-function get_supplier_data() {
-    let supplier_name = mymodal.get_input('supplier_name');
-    let contact       = mymodal.get_input('contact');
-    let location      = mymodal.get_input('location');
-    let date          = mymodal.get_input('date');
+generic.create_link = 'backend/supplier/create_supplier.php';
 
-    if(is_empty(supplier_name) || is_empty(contact) || is_empty(location)) {
+generic.read_link = 'backend/supplier/list_suppliers.php';
 
-        Swal.fire({
-            icon: 'error',
-            title: 'Empty Input',
-            text: 'Please check all input fields and try again!'
-        })
+generic.update_link = 'backend/supplier/update_supplier.php';
 
-        return false;
-    }
+generic.edit_link = 'backend/supplier/get_supplier.php';
 
-    return {name: supplier_name, contact: contact, location: location, date: date};
-}
+generic.delete_link = 'backend/supplier/delete_supplier.php';
 
-function create_new_supplier() {
+generic.search_link_date = 'backend/supplier/date_search.php';
 
-    // activate_itm('.loader');
-    let data = get_supplier_data();
+generic.search_link_input = 'backend/supplier/input_search.php';
 
-    if(!data) {
-        return data;
-    }
-
-    $.ajax({
-        method: 'POST',
-        url: 'backend/supplier/create_supplier.php',
-        data: data,
-        success: (data) => {
-
-            if(data == 'success') {
-                empty_the_list();
-                list_suppliers();
-
-                mymodal.close_modal();
-
-                Swal.fire({
-                    icon: 'success',
-                    title: 'User Created Successfully',
-                });
-            }
-
-            else if (data == 'exists') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Unable To Create Supplier',
-                    text: 'The Supplier already exists',
-                });
-            }
-
-            else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Unable To Create Supplier',
-                    text: 'Please contact tech support'
-                });
-            }
-
-        
-            // deactivate_itm('.loader');
-        }
-    });
-}
+generic.show_more_link = 'backend/supplier/show_more.php';
 
 function insert_new_supplier_ui(name, contact, location, date, id) {
 
@@ -148,7 +88,7 @@ function insert_new_supplier_ui(name, contact, location, date, id) {
             <div class = 'col'>${date}</div>
 
             <div class = 'col'>
-                <div class = 'btn edit' onclick = 'edit_supplier(${id});'>edit</div>
+                <div class = 'btn edit' onclick = 'generic.edit(${id});'>edit</div>
                 <div class = 'btn open'>open</div>
             </div>
 
@@ -159,75 +99,38 @@ function insert_new_supplier_ui(name, contact, location, date, id) {
     list.insertAdjacentHTML('beforeend', supplier_tab);
 }
 
-function is_empty(value) {
-    if (value.length == 0) {
-        return true;
-    }
-
-    return false;
+function new_ui_callback(supplier) {
+    insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
 }
 
-function list_suppliers() {
+function set_value_callback(data) {
+    set_supplier_values(data[0].name, data[0].contact, data[0].location, data[0].date);
+}
 
-    $.ajax({
-        method: 'get',
-        url: 'backend/supplier/list_suppliers.php',
-        data: '',
-        success: (data) => {
-            
-            get_last_id(data);
+function update_callback(id, supplier_data) {
+    let supplier_tab = select(`.list-item[supplier_id = '${id}']`);
 
-            data.forEach( supplier => {
-                insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
-            })
+    supplier_tab.innerHTML = `
 
-        }
-    })
+        <div class = 'col'>${supplier_data.name}</div>
+        <div class = 'col'>${supplier_data.contact}</div>
+        <div class = 'col'>${supplier_data.location}</div>
+        <div class = 'col'>${supplier_data.date}</div>
+
+        <div class = 'col'>
+            <div class = 'btn edit' onclick = 'generic.edit(${id});'>edit</div>
+            <div class = 'btn open'>open</div>
+        </div>
+    `;
+}
+
+function delete_callback(id) {
+    select(`.list-item[supplier_id = '${id}']`).remove();
 }
 
 function get_last_id(data) {
     let data_length = data.length - 1;
     search_param.last_id = data[data_length].id;
-}
-
-function empty_the_list() {
-    let list_header = `
-    <div class = 'list-item small p-abs top-left full-hw z-2'>
-        <div class = 'col'>Name</div>
-        <div class = 'col'>Contact</div>
-        <div class = 'col'>Location</div>
-        <div class = 'col'>Date</div>
-        <div class = 'col'>Action</div>
-    </div>
-    `;
-
-    select('.list-box .inner-content').innerHTML = list_header;
-}
-
-function edit_supplier(id) {
-
-    $.ajax({
-        method: 'POST',
-        url: 'backend/supplier/get_supplier.php',
-        data: {id: id},
-        success: (data) => {
-
-            if(data == 'not_exists') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Unable To Retrive Supplier',
-                    text: 'Please try again later'
-                })
-            }
-
-            else {
-                set_supplier_values(data[0].name, data[0].contact, data[0].location, data[0].date);
-                mymodal.set_first_btn_function(`update_supplier(${data[0].id});`);
-                mymodal.set_second_btn_function(`delete_supplier(${data[0].id});`);
-                mymodal.open_modal();
-            }
-        }
-    })
 }
 
 function set_supplier_values(name, contact, location, date) {
@@ -242,226 +145,4 @@ function set_supplier_values(name, contact, location, date) {
     mymodal.set_input('date', date);
 }
 
-function delete_supplier(id) {
-
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                method: 'POST',
-                url: 'backend/supplier/delete_supplier.php',
-                data: {id: id},
-                success: (data) => {
-                    console.log(data);
-
-                    if(data == 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Supplier Deleted Successfully',
-                        });
-        
-                        mymodal.close_modal();
-                        select(`.list-item[supplier_id = '${id}']`).remove();
-                    }
-
-                    if(data == 'error') {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Unable To Delete Supplier',
-                            text: 'Please try again'
-                        })
-                    }
-
-
-                }
-            });
-        }
-      })
-
-}
-
-function update_supplier(id) {
-    let supplier_data = get_supplier_data();
-
-    if(!supplier_data) {
-        return supplier_data;
-    }
-
-    supplier_data.id = id;
-
-    $.ajax({
-        method: 'POST',
-        url: 'backend/supplier/update_supplier.php',
-        data: supplier_data,
-        success: (data) => {
-
-            if(data == 'success') {
-                let supplier_tab = select(`.list-item[supplier_id = '${id}']`);
-
-                supplier_tab.innerHTML = `
-        
-                    <div class = 'col'>${supplier_data.name}</div>
-                    <div class = 'col'>${supplier_data.contact}</div>
-                    <div class = 'col'>${supplier_data.location}</div>
-                    <div class = 'col'>${supplier_data.date}</div>
-        
-                    <div class = 'col'>
-                        <div class = 'btn edit' onclick = 'edit_supplier(${id});'>edit</div>
-                        <div class = 'btn open'>open</div>
-                    </div>
-                `;
-
-                mymodal.close_modal();
-                Swal.fire({
-                    icon: 'success',
-                    title: 'User Updated Successfully',
-                });
-            }
-
-            else if (data == 'not_exists') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Unable To Update Supplier',
-                    text: 'The supplier does not exist.'
-                });
-            }
-
-            else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Unable To Update Supplier',
-                    text: 'Please contact tech support'
-                });
-            }
-
-        
-            // deactivate_itm('.loader');
-        }
-    });
-}
-
-function date_search() {
-
-    search_param.start_date = select('.date-search-box .start-date input').value;
-    search_param.end_date   = select('.date-search-box .end-date input').value;
-
-    $.ajax({
-        method: 'POST',
-        url: 'backend/supplier/date_search.php',
-        data: {start_date: search_param.start_date, end_date: search_param.end_date, search: search_param.search},
-        success: (data) => {
-
-            if(data == 'error') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Unable to Filter Date',
-                    text: 'Please contact tech support'
-                })
-            }
-            else if( data.length > 0)
-            {
-                get_last_id(data);
-                empty_the_list();
-    
-                data.forEach( supplier => {
-                    insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
-                });
-            }
-            else {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Nothing Between Selected Dates',
-                    text: 'Use different dates and try again'
-                })
-            }
-
-        
-        }
-    });
-    
-}
-
-function input_search() {
-    search_param.start_date = '';
-    search_param.end_date   = '';
-    search_param.search = select('.search_box input').value;
-
-    $.ajax({
-        method: 'POST',
-        url: 'backend/supplier/input_search.php',
-        data: {search: search_param.search},
-        success: (data) => {
-
-            if(data == 'error') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Unable to Provide Search Result',
-                    text: 'Please contact tech support'
-                })
-            }
-
-            else if( data.length > 0)
-            {
-                get_last_id(data); 
-                empty_the_list();
-                data.forEach( supplier => {
-                    insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
-                });
-            }
-
-            else {
-                empty_the_list();
-
-            }
-
-        
-        }
-    });
-}
-
-function show_more() {
-
-    $.ajax({
-        method: 'POST',
-        url: 'backend/supplier/show_more.php',
-        data: {start_date: search_param.start_date, end_date: search_param.end_date, search: search_param.search, last_id: search_param.last_id},
-        success: (data) => {
-
-            if(data == 'error') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Unable to Provide More Result',
-                    text: 'Please contact tech support'
-                })
-            }
-
-            else if( data.length > 0)
-            {
-                get_last_id(data);    
-                data.forEach( supplier => {
-                    insert_new_supplier_ui(supplier.name, supplier.contact, supplier.location, supplier.date, supplier.id);
-                });
-            }
-
-            else {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'No More Data To Show',
-                    text: 'you have reached the end of the supplier list'
-                });
-
-            }
-
-        }
-    });
-
-}
-
-list_suppliers();
+generic.list_rows();

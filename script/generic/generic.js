@@ -2,8 +2,6 @@
 
 class Generic_CRUD {
 
-
-
     modal; //the modal object
 
     //this property holds the function in the form of a string
@@ -18,7 +16,12 @@ class Generic_CRUD {
     list_header;
 
     //the object for search operations
-    search_param;
+    search_param = {
+        last_id: '',
+        start_date: '',
+        end_date: '',
+        search: '',
+    };
 
     //this ui callback inserts new ui row evertime a create/search/show_more operation is executed
     ui_callback;
@@ -54,20 +57,19 @@ class Generic_CRUD {
 
     constructor(modal) {
         this.modal = modal;
-        this.list_rows();
     }
 
     new() {
         //this function clears all the input in a modal, so that new input can be entered to create a new data entry/row
         this.modal.clear_all_input();
-        this.modal.set_first_btn_function(create_function);
+        this.modal.set_first_btn_function(this.create_function);
         this.modal.deactivate_second_btn();
         this.modal.open_modal();
     }
 
     get_data() {
 
-        data_obj = JSON.stringify(get_input_obj);
+        let data_obj = JSON.stringify(this.get_input_obj);
         data_obj = JSON.parse(data_obj);
 
         let empty_check = false;
@@ -76,6 +78,7 @@ class Generic_CRUD {
             data_obj[property] = this.modal.get_input(data_obj[property]);
 
             if( this.is_empty( data_obj[property]) ) empty_check = true;
+
         })
 
         if(empty_check) return false;
@@ -85,9 +88,16 @@ class Generic_CRUD {
     }
 
     create_new() {
-        let data = get_data();
+        let data = this.get_data();
 
-        if(!data) return data;
+        if(!data) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Empty Input',
+                text: 'please check all inputs and try again.'
+            });
+            return data;
+        }
 
         $.ajax({
             method: 'POST',
@@ -145,7 +155,7 @@ class Generic_CRUD {
                 this.get_last_id(data);
     
                 data.forEach( item_data => {
-                    insert_new_ui(item_data);
+                    this.insert_new_ui(item_data);
                 })
     
             }
@@ -162,7 +172,7 @@ class Generic_CRUD {
     }
 
     is_empty(value) {
-        if(value.lenght == 0 || value.length == null){
+        if(value.length == 0 || value.length == null){
             return true;
         }
 
@@ -186,9 +196,9 @@ class Generic_CRUD {
                 }
     
                 else {
-                    set_values(data);
-                    this.modal.set_first_btn_function(`update(${data[0].id});`);
-                    this.modal.set_second_btn_function(`delete(${data[0].id});`);
+                    this.set_values(data);
+                    this.modal.set_first_btn_function(`generic.update(${data[0].id});`);
+                    this.modal.set_second_btn_function(`generic.delete(${data[0].id});`);
                     this.modal.open_modal();
                 }
             }
@@ -199,7 +209,7 @@ class Generic_CRUD {
     update(id) {
 
     
-        let item_data = get_data();
+        let item_data = this.get_data();
     
         if(!item_data) {
             return item_data;
@@ -314,7 +324,7 @@ class Generic_CRUD {
                     this.empty_the_list();
         
                     data.forEach( item_data => {
-                        insert_new_ui(item_data);
+                        this.insert_new_ui(item_data);
                     });
                 }
                 else {
@@ -352,15 +362,15 @@ class Generic_CRUD {
     
                 else if( data.length > 0)
                 {
-                    get_last_id(data); 
-                    empty_the_list();
+                    this.get_last_id(data); 
+                    this.empty_the_list();
                     data.forEach( supplier => {
-                        insert_new_ui(supplier);
+                        this.insert_new_ui(supplier);
                     });
                 }
     
                 else {
-                    empty_the_list();
+                    this.empty_the_list();
 
                 }
     
@@ -370,7 +380,7 @@ class Generic_CRUD {
     }
 
     set_values(data) {
-        set_values_callback(data);
+        this.set_values_callback(data);
     }
 
     show_more() {
