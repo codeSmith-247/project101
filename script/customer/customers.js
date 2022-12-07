@@ -32,20 +32,20 @@ mymodal.create_input({
     disabled: true,
 });
 
-function open_new_supplier() {
+function open_new_customer() {
     mymodal.clear_all_input();
-    mymodal.set_first_btn_function('create_new_supplier();');
+    mymodal.set_first_btn_function('create_new_customer();');
     mymodal.deactivate_second_btn();
     mymodal.open_modal();
 }
 
-function get_supplier_data() {
-    let supplier_name = mymodal.get_input('supplier_name');
+function get_customer_data() {
+    let customer_name = mymodal.get_input('customer_name');
     let contact       = mymodal.get_input('contact');
     let location      = mymodal.get_input('location');
     let date          = mymodal.get_input('date');
 
-    if(is_empty(supplier_name) || is_empty(contact) || is_empty(location)) {
+    if(is_empty(customer_name) || is_empty(contact) || is_empty(location)) {
 
         Swal.fire({
             icon: 'error',
@@ -56,13 +56,13 @@ function get_supplier_data() {
         return false;
     }
 
-    return {name: supplier_name, contact: contact, location: location, date: date};
+    return {name: customer_name, contact: contact, location: location, date: date};
 }
 
-function create_new_supplier() {
+function create_new_customer() {
 
     // activate_itm('.loader');
-    let data = get_supplier_data();
+    let data = get_customer_data();
 
     if(!data) {
         return data;

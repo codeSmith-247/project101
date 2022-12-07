@@ -1,4 +1,4 @@
-function select(target) {
+ function select(target) {
     return document.querySelector(target);
 }
 

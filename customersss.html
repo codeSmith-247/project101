@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+
+    <head>
+        <meta charset = 'utf-8'>
+        <meta name = 'viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Dashboard</title>
+
+        <link rel = 'stylesheet' href = 'css/general.css'>
+        <link rel = 'stylesheet' href = 'css/variables.css'>
+        <link rel = "stylesheet" href = "css/admin.css">
+        <link rel = "stylesheet" href = "css/barchart.css">
+        <link rel = "stylesheet" href = "css/listing.css">
+        <link rel = "stylesheet" href = "css/suplier_tweek.css">
+        <link rel = "stylesheet" href = "css/modal.css">
+        <link rel = "stylesheet" href = "css/date_search.css">
+        <!-- <link rel = "stylesheet" href = "css/value.css"> -->
+        <link rel = 'stylesheet' href = 'css/dashboard.css'>
+
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" defer></script>
+        <script src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11' defer></script>
+        
+        <script src = 'script/base_functions.js' defer></script>
+        <script src = 'script/menu_functions.js' defer></script>
+        <script src = 'script/menu.js' defer></script>
+        <script src = 'script/dashboard.js' defer></script>
+        <script src = 'script/modal.js' defer></script>
+        <script src = 'script/supplier/supplier.js' defer></script>
+        <script src="script/customer/customers.js" defer></script>
+
+
+
+
+    </head>
+
+    <body>
+        <div class = 'wrapper flex'>
+            <!-- Menu section -->
+            <div class = 'menu left-panel full-vh' >
+                <!-- content box -->
+                <div class = 'contents left-s p-rel z-2'>
+
+                    <!-- menu logo -->
+                    <div class = 'logo left-ss'></div>
+
+                    <!-- menu items -->
+                    <div class = 'menu-item left-ss {{class}}' onclick = 'location.href = "{{link}}"' name = '{{name}}' tabindex="1">
+                        <div class = 'main-value flex-row'>
+                            <div class = 'icon left-sss'>
+                                <i class = 'bi bi-{{icon-name}}'></i>
+                            </div> <!-- menu icon-->
+                            <div class = 'item-value left-sss flex-row flex-between'>
+                                <span>{{name}}</span>
+                                <i class = 'bi bi-chevron-down down {{drop-down}}'></i>
+                            </div> <!-- menu item name-->
+                        </div>
+
+                        <div class = 'drop-down'>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class = 'menu-overlay p-abs top-left full-hw p-rel z-1' onclick = 'deactivate_itm(".menu");'></div>
+            </div>
+            <!--  -->
+
+            <!-- activity area -->
+            <div class = 'focus-area right-panel'>
+                <!-- top bar -->
+                <div class = 'top-bar full-w flex-row flex-between'>
+                    <div class = 'menu-btn' onclick = 'toggle_itm(".menu");'>
+                        <i class = 'bi bi-list'></i>
+                    </div>
+                    <div>Mr Username</div>
+                </div>
+
+                <div style = 'overflow-y: scroll; height: 90vh;'>
+                    <div class = 'container flex-col flex-row'>
+
+                        <div class = 'title-row flex-row flex-between'>
+                            <h1>My Customers</h1>
+                            <div class = 'btn list flex-row'>
+                                <div class = 'itm-btn flex-row' onclick = 'activate_itm(".date-search-case");'>
+                                    <i class = 'bi bi-calendar-date'></i>
+                                    <span>Date search</span>
+                                </div>
+
+                                <div class = 'itm-btn flex-row blue' onclick = 'open_new_customer();'>
+                                    <i class = 'bi bi-plus-circle'></i>
+                                    <span>Add customer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class = 'search_box flex-row'>
+
+                            <div class = 'input'>
+                                <input type = 'text' name = 'search' class = 'full-hw' placeholder = 'Type here to search for a particular customer...'>
+                            </div>
+
+                            <div class = 'search_btn flex-center'>
+                                <i class = 'bi bi-search'></i>
+                            </div>
+                        </div>
+
+                        <div class = 'list-box p-rel'>
+                            <div class = 'inner-content'>
+
+                                <div class = 'list-item small p-abs top-left full-hw z-2'>
+                                    <div class = 'col'>Name</div>
+                                    <div class = 'col'>Contact</div>
+                                    <div class = 'col'>Location</div>
+                                    <div class = 'col'>Date</div>
+                                    <div class = 'col'>Action</div>
+                                </div>
+ 
+                            </div>
+                        </div>
+
+                        <div class = 'bottom-btns flex-row flex-end'>
+                            <div class = 'showmore-btn btn'>Show More</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date Search Filter -->
+                
+                <div class = 'date-search-case flex-col flex-center p-abs top-left full-vhw'>
+                    <div class = 'date-search-box p-rel'>
+
+                        <div class = 'modal-close-btn p-abs' onclick = 'deactivate_itm(".date-search-case");'>
+                            <div class = 'close-x flex-center round pointer'>
+                                <i class = 'bi bi-x-lg'></i>
+                            </div>
+                        </div>
+
+                        <div class = 'start-date flex-col'>
+                            <label>Start Date</label>
+                            <input type = 'date' name = 'start_date'>
+                        </div>
+                
+                        <div class = 'end-date flex-col'>
+                            <label>End Date</label>
+                            <input type = 'date' name = 'end_date'>
+                        </div>
+
+                        <div class = 'search_btn full-w flex-center'>
+                            Search
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>  
+        
+        <script>
+            document.querySelectorAll('.col').forEach( col => {
+                if(col.innerText.length > 10) {
+                    col.innerText = col.innerText.slice(0,10);
+                    console.log('did it');
+                }
+            });
+
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
+    </body>
+
+</html>

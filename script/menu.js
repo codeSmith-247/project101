@@ -22,7 +22,7 @@ let menu_items = {
 
     "Customers" : {
         icon : 'people-fill',
-        link : 'customers_list.html',
+        link : 'customersss.html',
         dropdown: false,
         parent: null
     },
