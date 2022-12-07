@@ -1,6 +1,5 @@
 let mymodal = new Modal('.list-item .btn.edit');
 
-
 mymodal.create_input({
     title: 'Supplier\'s Name',
     name:  'supplier_name',
@@ -128,10 +127,6 @@ function delete_callback(id) {
     select(`.list-item[supplier_id = '${id}']`).remove();
 }
 
-function get_last_id(data) {
-    let data_length = data.length - 1;
-    search_param.last_id = data[data_length].id;
-}
 
 function set_supplier_values(name, contact, location, date) {
 
