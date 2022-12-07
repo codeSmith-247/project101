@@ -140,3 +140,103 @@ function delete_supplier($id) {
         return false;
     }
 }
+
+function date_search($start_date, $end_date, $search) {
+
+    global $conn;
+    
+    $start_date = $start_date == '' ? '01/01/2002' : $start_date;
+    $end_date = $start_date == '' ? '01/01/2002' : date('m/d/Y');
+
+    $start_date=date("Y-m-d H:i:s",strtotime($start_date));
+    $end_date=date("Y-m-d H:i:s",strtotime($end_date));
+
+    $search = "%$search%";
+   
+    $sql = 'select * from suppliers where date >= timestamp(?) and date <= timestamp(?) and ( name like ? or contact like ? or location like ?) and state != "deleted" order by id desc limit 20';
+    $sql = $conn->prepare($sql);
+
+    $sql->bind_param('sssss', $start_date, $end_date, $search, $search, $search);
+
+    if($sql->execute()) {
+        $result_array = [];
+
+        $sql = $sql->get_result();
+
+        while($row = $sql->fetch_assoc()) {
+            array_push($result_array, $row);
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($result_array);
+        return true;
+    }
+
+    echo 'error';
+    return false;
+}
+
+function input_search($search) {
+
+    global $conn;
+
+    $search = "%$search%";
+   
+    $sql = 'select * from suppliers where (name like ? or contact like ? or location like ?) and state != "deleted" order by id desc limit 20';
+    $sql = $conn->prepare($sql);
+
+    $sql->bind_param('sss', $search, $search, $search);
+
+    if($sql->execute()) {
+        $result_array = [];
+
+        $sql = $sql->get_result();
+
+        while($row = $sql->fetch_assoc()) {
+            array_push($result_array, $row);
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($result_array);
+        return true;
+    }
+
+    echo 'error';
+    return false;
+}
+
+
+function show_more($start_date, $end_date, $search, $last_id) {
+
+    global $conn;
+    
+    $start_date = $start_date == '' ? '01/01/2002' : $start_date;
+    $end_date = $start_date == '' ? '01/01/2002' : date('m/d/Y');
+
+    $start_date=date("Y-m-d H:i:s",strtotime($start_date));
+    $end_date=date("Y-m-d H:i:s",strtotime($end_date));
+
+    $search = "%$search%";
+   
+    $sql = 'select * from suppliers where date >= timestamp(?) and date <= timestamp(?) and ( name like ? or contact like ? or location like ?) and id < ? and state != "deleted" order by id desc limit 20';
+    $sql = $conn->prepare($sql);
+
+    $sql->bind_param('ssssss', $start_date, $end_date, $search, $search, $search, $last_id);
+
+    if($sql->execute()) {
+        $result_array = [];
+
+        $sql = $sql->get_result();
+
+        while($row = $sql->fetch_assoc()) {
+            array_push($result_array, $row);
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($result_array);
+        return true;
+    }
+
+    echo 'error';
+    return false;
+}

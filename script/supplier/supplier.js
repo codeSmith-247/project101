@@ -17,12 +17,12 @@ mymodal.create_input({
 });
 
 mymodal.create_input({
-    title: 'Location', 
+    title: 'Location',
     name:  'location',
     type:  'text',
     placeholder: 'e.g Accra Circle',
     disabled: true,
-}); 
+});
 
 mymodal.create_input({
     title: 'Supplier Date',

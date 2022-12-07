@@ -8,4 +8,3 @@ $location   = $_POST['location'];
 $date       = $_POST['date'];
 
 create_new_supplier($name, $contact, $location, $date);
-

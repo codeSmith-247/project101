@@ -97,10 +97,10 @@
                         <div class = 'search_box flex-row'>
 
                             <div class = 'input'>
-                                <input type = 'text' name = 'search' class = 'full-hw' placeholder = 'Type here to search for a particular Suplier...'>
+                                <input type = 'text' name = 'search' class = 'full-hw' placeholder = 'Type here to search for a particular Suplier...' oninput="input_search();">
                             </div>
 
-                            <div class = 'search_btn flex-center'>
+                            <div class = 'search_btn flex-center' onclick="input_search();">
                                 <i class = 'bi bi-search'></i>
                             </div>
                         </div>
@@ -120,13 +120,12 @@
                         </div>
 
                         <div class = 'bottom-btns flex-row flex-end'>
-                            <div class = 'showmore-btn btn'>Show More</div>
+                            <div class = 'showmore-btn btn' onclick = 'show_more();'>Show More</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Date Search Filter -->
-                
                 <div class = 'date-search-case flex-col flex-center p-abs top-left full-vhw'>
                     <div class = 'date-search-box p-rel'>
 
@@ -146,7 +145,7 @@
                             <input type = 'date' name = 'end_date'>
                         </div>
 
-                        <div class = 'search_btn full-w flex-center'>
+                        <div class = 'search_btn full-w flex-center' onclick = 'date_search();'>
                             Search
                         </div>
 

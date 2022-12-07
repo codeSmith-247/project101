@@ -1,15 +1,15 @@
 let mymodal = new Modal('.list-item .btn.edit');
 
 mymodal.create_input({
-    title: 'Supplier\'s Name',
-    name:  'supplier_name',
+    title: 'customer\'s Name',
+    name:  'customer_name',
     type:  'text',
     placeholder: 'e.g Cementagon Cement Limited',
     disabled: true,
 });
 
 mymodal.create_input({
-    title: 'Suplier\'s Contact',
+    title: 'customer\'s Contact',
     name:  'contact',
     type:  'tel',
     placeholder: 'e.g 0550000000',
@@ -25,10 +25,10 @@ mymodal.create_input({
 }); 
 
 mymodal.create_input({
-    title: 'Supplier Date',
+    title: 'Customer Date',
     name:  'date',
     type:  'date',
-    placeholder: 'supplier date',
+    placeholder: 'customer date',
     disabled: true,
 });
 
