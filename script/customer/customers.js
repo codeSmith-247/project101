@@ -178,6 +178,7 @@ function edit_supplier(id) {
         data: {id: id},
         success: (data) => {
 
+
             if(data == 'not_exists') {
                 Swal.fire({
                     icon: 'error',
@@ -198,7 +199,7 @@ function edit_supplier(id) {
 
 function set_supplier_values(name, contact, location, date) {
 
-    mymodal.set_input('supplier_name', name);
+    mymodal.set_input('customer_name', name);
     mymodal.set_input('contact', contact);
     mymodal.set_input('location', location);
 
