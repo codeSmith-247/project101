@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+    <link rel="stylesheet" href="customerSingle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+    <div class="container container-flex">
+        <header>
+            <div class="header-nav">
+                <ion-icon name="arrow-back-outline" class="icon-click"></ion-icon>
+                <h3>Go back</h3>
+            </div>
+            <div class="header-user-info">
+                <h3>Good morning, User</h3>
+                <img src="dp.jpg" alt="user-image" class="user-info-image">
+            </div>
+        </header> 
+        <main role="main">
+            <div class="content-header">
+                   <h3 class="content-header-title">Statistics</h3>
+                <ion-icon name="stats-chart-outline"></ion-icon>
+            </div>
+            <div class="content-body">
+                <div class="content-body-main">
+                    <div class="content-body-main-header">
+                        <div class="icon">
+                            <ion-icon name="cash-outline" class="icon-edit"></ion-icon>
+                        </div>
+                        <div class="monthly-select">
+                            <h5>Monthly</h5>
+                            <ion-icon name="caret-up-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="content-body-main-info">
+                        <p class="payment-p">Total Payment</p>
+                        <div class="payment-info">
+                            <div>
+                                <h2 id="paymentOutput"></h2>
+                            </div>
+                            <div class="increase-decrease">
+                                <h6>$123</h6>
+                                <ion-icon name="caret-up-outline" class="increase-decrease-primary"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-body-main">
+                    <div class="content-body-main-header">
+                        <div class="icon">
+                            <ion-icon name="cart-outline" class="icon-edit"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="content-body-main-info">
+                        <p class="payment-p">SUPPLIER COUNT</p>
+                        <div class="payment-info">
+                            <div>
+                                <h2 id="supplierOutput"></h2>
+                            </div>
+                            <div class="increase-decrease">
+                                <h6>$123</h6>
+                                <ion-icon name="caret-down-outline" class="increase-decrease-secondary"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-body-main">
+                    <div class="content-body-main-header">
+                        <div class="icon">
+                            <ion-icon name="wallet-outline" class="icon-edit"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="content-body-main-info">
+                        <p class="payment-p">AMOUNT</p>
+                        <div class="payment-info">
+                            <div>
+                                <h2 id="amountOutput"></h2>
+                            </div>
+                            <div class="increase-decrease">
+                                <h6>$123</h6>
+                                <ion-icon name="caret-down-outline" class="increase-decrease-secondary"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="content-body-main">
+                    <div class="content-body-main-header">
+                        <div class="icon">
+                            <i class="fa fa-area-chart" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="content-body-main-info">
+                        <p class="payment-p">QUANTITY</p>
+                        <div class="payment-info">
+                            <div>
+                                <h2 id="quantityOutput"></h2>
+                            </div>
+                            <div class="increase-decrease">
+                                <h6>$123</h6>
+                                <ion-icon name="caret-up-outline" class="increase-decrease-primary"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-body-main">
+                    <div class="content-body-main-header">
+                        <div class="icon">
+                            <i class="fa fa-credit-card-alt"></i>
+                        </div>
+                    </div>
+                    <div class="content-body-main-info">
+                        <p class="payment-p">CREDIT</p>
+                        <div class="payment-info">
+                            <div>
+                                <h2>$12345</h2>
+                            </div>
+                            <div class="increase-decrease">
+                                <h6>$123</h6>
+                                <ion-icon name="caret-up-outline" class="increase-decrease-primary"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-body-main">
+                    <div class="content-body-main-header">
+                        <div class="icon">
+                            <i class="fa fa-credit-card-alt"></i>
+                        </div>
+                    </div>
+                    <div class="content-body-main-info">
+                        <p class="payment-p">DEBIT</p>
+                        <div class="payment-info">
+                            <div>
+                                <h2>$12345</h2>
+                            </div>
+                            <div class="increase-decrease">
+                                <h6>$123</h6>
+                                <ion-icon name="caret-up-outline" class="increase-decrease-secondary"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <button class="primary-btn">
+                    <i class="fa fa-add"></i>
+                    Customer Data
+                </button>
+                <button class="primary-btn edit">
+                    <i class="fa fa-edit"></i>
+                    Edit
+                </button>
+            </div>
+        </main>
+    </div>
+                <!--Modal container-->
+                <div class="modal-container">
+                    <div class="modal">
+                    <div class="modal-header">
+                        <h3>Customer Information</h3>
+                        <div class="close-btn">
+                            <i class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <form> 
+                        <div class="modal-input">
+                           <div class="controls">
+                            <div class="single-input">
+                                <label for="payment">Total Payment</label>
+                                <input type="text" name="payment" required placeholder="Enter the total payment" id="paymentInput"> 
+                                <ion-icon name="cash-outline" class="input-icon"></ion-icon>
+                            </div>
+                            <div class="single-input">
+                                <label for="quantity">Quantity</label>
+                            <input type="number" name="quantity" placeholder="Enter quantity" id="quantity">
+                            <i class="fa fa-area-chart input-icon" aria-hidden="true" ></i>
+                            </div>
+                            <div class="single-input">
+                                <label for="singleBag">Amount per Bag</label>
+                                <input type="text" name="singleBag" placeholder="Enter amount" id="amount">
+                                <ion-icon name="wallet-outline" class="icon-edit input-icon"></ion-icon>
+                            </div>
+                            <div class="single-input">
+                                <label type="supply">Supply</label>
+                                <input type="text" name="supply" placeholder="Enter supplier details" id="supply">
+                            <ion-icon name="cart-outline" class="icon-edit input-icon"></ion-icon>
+                            </div>
+                           </div>
+                            <div class="single-input">
+                                <label type="credit">Credit</label>
+                                <input type="text" name="credit">
+                                <i class="fa fa-credit-card-alt input-icon"></i>
+                            </div>
+                            <div class="single-input">
+                                <label type="debit">Debit</label>
+                                <input type="text" name="debit">
+                                <i class="fa fa-credit-card-alt input-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <div class="save">
+                                <button class="secondary-btn"  id="save" onclick="changePayment()">Save</button>
+                            </div>
+                            <div class="save">
+                                <button class="secondary-btn delete">Delete</button>
+                            </div>
+                        </div>
+                    </form>
+
+                        
+                    </div>
+                </div>
+
+<!--Script for modal-->
+<script src="customerSingle.js"></script>
+<!--Ionic icons script-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
